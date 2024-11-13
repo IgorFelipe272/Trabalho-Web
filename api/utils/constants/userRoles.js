@@ -1,4 +1,5 @@
 const userRoles = {
+    ADMINISTRATOR: "administrator",
     PRESIDENT: "president",
     DIRECTOR: "director",
     MEMBER: "member",

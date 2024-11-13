@@ -1,4 +1,4 @@
-const httpStatusCodes = {
+const statusCodes = {
     SUCCESS: 200,
     CREATED: 201,
     ACCEPTED: 202,
@@ -10,4 +10,4 @@ const httpStatusCodes = {
     INTERNAL_SERVER_ERROR: 500,
 };
 
-module.exports = httpStatusCodes;
+module.exports = statusCodes;

@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const database = require("../../../config/database");
 
-const userRoles = require("../../../utils/userRoles");
+const userRoles = require("../../../utils/constants/userRoles");
 
 const User = database.define("User", {
     id: {
@@ -24,7 +24,8 @@ const User = database.define("User", {
 
     email: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
 
     password: {
