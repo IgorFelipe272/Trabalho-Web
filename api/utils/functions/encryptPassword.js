@@ -1,9 +1,13 @@
+//Arquivo para armazenar uma função de criptografia de senhas
+//Importa a biblioteca para a função
 const bcrypt = require("bcrypt");
 
-function encryptPassword(password){
+async function encryptPassword(password){
+    //n sei o q é esse saltkkkkkk
     const salt = 10;
 
-    const encryptedPassword = bcrypt.hash(password, salt);
+    //função hash criptografa a senha
+    const encryptedPassword = await bcrypt.hash(password, salt);
 
     return encryptedPassword;
 }

@@ -1,8 +1,8 @@
-class NotAuthorizedError extends Error {
+class PermissionError extends Error {
     constructor(msg) {
         super(msg);
-        this.name = 'NotAuthorizedError';
+        this.name = 'PermissionError';
     }
 }
 
-module.exports = NotAuthorizedError;
+module.exports = PermissionError;
