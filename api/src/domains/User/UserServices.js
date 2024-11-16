@@ -3,13 +3,33 @@ const User = require("./User");
 
 //Importa a função para criptografar senhas
 const encryptPassword = require("../../../utils/functions/encryptPassword");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 //Importa os erros lançados nas funções
 const DuplicateError = require("../../../errors/DuplicateError");
 const NotFoundError = require("../../../errors/NotFoundError");
+const PermissionError = require("../../../errors/PermissionError");
+const QueryError = require("../../../errors/QueryError");
 
 //Cria uma class para o services deste domínio
 class UserServices{
+    async login(body){
+        const user = await User.findOne({
+            where: {email: body.email}
+        });
+        if(!user)
+            throw new PermissionError("Email ou senha inválidos");
+
+        const matchingPassword = await bcrypt.compare(body.password, user.password);
+        if(!matchingPassword)
+            throw new PermissionError("Email ou senha inválidos");
+
+        const token = jwt.sign({id: user.id, name: user.name, email: user.email, role: user.role}, process.env.JWT_KEY, {expiresIn: process.env.JWT_EXPIRATION});
+
+        return token;
+    }
+
     async create(body){
         //Usa a função findOne do sequelize para achar um elemento no banco de dados onde email = o email do body
         //Se já existir um usuário que tem o email então lança (throw) um erro. Este erro será capturado (catch) nas rotas no index

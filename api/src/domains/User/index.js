@@ -7,9 +7,46 @@ const UserServices = require("./UserServices");
 
 //Importa uma constante com vários códigos de status comuns para http
 const statusCodes = require("../../../utils/constants/statusCodes");
+const {jwtAuthenticator, notLoggedIn} = require("../../middlewares/jwtAuthenticator");
+const roleAuthenticator = require("../../middlewares/roleAuthenticator");
+const userRoles = require("../../../utils/constants/userRoles");
+
+Router.post("/login", notLoggedIn, async(req, res, next) => {
+    try{ 
+        const body = req.body;
+        
+        //Chama o services para processar os dados recebidos da requisição
+        const token = await UserServices.login(body);
+
+        res.cookie("jwt", token, {
+            httpOnly: true,
+            sameSite: "strict",
+            maxAge: 24 * 60 * 60 * 1000
+        });
+        
+        res.status(statusCodes.SUCCESS).send("Login realizado com sucesso")
+    }catch(error){
+        next(error);
+    }
+});
+
+Router.post("/logout", jwtAuthenticator, async(req, res, next) => {
+    try{ 
+        const token = req.cookies["jwt"];
+
+        if(!token)
+            throw new QueryError("Não está logado");
+            
+        res.clearCookie("jwt");
+        
+        res.status(statusCodes.SUCCESS).send("Logout realizado com sucesso")
+    }catch(error){
+        next(error);
+    }
+});
 
 //Rota post para criar um um novo elemento
-Router.post("/", async(req, res, next) => {
+Router.post("/", notLoggedIn, async(req, res, next) => {
     //O try-catch tenta capturar um erro que for lançado durante a execução do código. Todo código dentro do try será executado em uma ocasião normal,
     //caso um erro seja capturado o restante do código no try para de executar e executa o código dentro do catch
     try{ 
@@ -27,7 +64,7 @@ Router.post("/", async(req, res, next) => {
 });
 
 //Rota put para alterar um elemento
-Router.put("/:userId", async(req, res, next) => {
+Router.put("/:userId", jwtAuthenticator, async(req, res, next) => {
     try{ 
         const userId = req.params.userId;
 
@@ -42,7 +79,7 @@ Router.put("/:userId", async(req, res, next) => {
     }
 });
 
-Router.delete("/:userId", async(req, res, next) => {
+Router.delete("/:userId", jwtAuthenticator, async(req, res, next) => {
     try{ 
         const userId = req.params.userId;
 
@@ -55,7 +92,7 @@ Router.delete("/:userId", async(req, res, next) => {
     }
 });
 
-Router.get("/:userId", async(req, res, next) => {
+Router.get("/:userId", jwtAuthenticator, async(req, res, next) => {
     try{ 
         const userId = req.params.userId;
 
@@ -68,7 +105,7 @@ Router.get("/:userId", async(req, res, next) => {
     }
 });
 
-Router.get("/", async(req, res, next) => {
+Router.get("/", jwtAuthenticator, roleAuthenticator([userRoles.ADMINISTRATOR, userRoles.PRESIDENT, userRoles.DIRECTOR]), async(req, res, next) => {
     try{ 
         //Chama o services para processar os dados recebidos da requisição
         const users = await UserServices.getAll();
