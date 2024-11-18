@@ -1,13 +1,18 @@
 const PermissionError = require("../../errors/PermissionError");
 
+//Middleware para checar se o usuário possui a permissão necessária para executar uma ação
 function roleAuthenticator(roles){
     return (req, res, next) => {
         try{
             let isValid = false;
-    
+            
+            //Percorre o array com todas as funções que são permitidas de se acessar a funcionalidade
             for(let role of roles){
-                if(req.user.role === role)
+                //Se o usuário possui uma dessas funções então permite o acesso
+                if(req.user.role === role){
                     isValid = true;
+                    break;
+                }
             }
     
             if(!isValid)

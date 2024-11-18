@@ -11,6 +11,9 @@ const {jwtAuthenticator, notLoggedIn} = require("../../middlewares/jwtAuthentica
 const roleAuthenticator = require("../../middlewares/roleAuthenticator");
 const userRoles = require("../../../utils/constants/userRoles");
 
+
+//Rota post para logar
+//Utiliza o middleware notLoggedIn para checar se já há um usuário logado na sessão
 Router.post("/login", notLoggedIn, async(req, res, next) => {
     try{ 
         const body = req.body;
@@ -30,6 +33,8 @@ Router.post("/login", notLoggedIn, async(req, res, next) => {
     }
 });
 
+//Rota post para deslogar
+//Utiliza o middleware jwtAuthenticator cujo objetivo é checar se há um usuário logado no sistema
 Router.post("/logout", jwtAuthenticator, async(req, res, next) => {
     try{ 
         const token = req.cookies["jwt"];
@@ -79,8 +84,10 @@ Router.put("/:userId", jwtAuthenticator, async(req, res, next) => {
     }
 });
 
+//Rota delete para remover um elemento
 Router.delete("/:userId", jwtAuthenticator, async(req, res, next) => {
     try{ 
+        //id do usuário que será removido
         const userId = req.params.userId;
 
         //Chama o services para processar os dados recebidos da requisição
@@ -92,8 +99,10 @@ Router.delete("/:userId", jwtAuthenticator, async(req, res, next) => {
     }
 });
 
+//Rota get para obter um elemento
 Router.get("/:userId", jwtAuthenticator, async(req, res, next) => {
     try{ 
+        //id do elemento que será removido
         const userId = req.params.userId;
 
         //Chama o services para processar os dados recebidos da requisição
@@ -105,6 +114,7 @@ Router.get("/:userId", jwtAuthenticator, async(req, res, next) => {
     }
 });
 
+//Rota get para obter todos os elementos
 Router.get("/", jwtAuthenticator, roleAuthenticator([userRoles.ADMINISTRATOR, userRoles.PRESIDENT, userRoles.DIRECTOR]), async(req, res, next) => {
     try{ 
         //Chama o services para processar os dados recebidos da requisição
