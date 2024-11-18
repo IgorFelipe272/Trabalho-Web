@@ -14,6 +14,7 @@ const userRoles = require("../../../utils/constants/userRoles");
 
 //Rota post para logar
 //Utiliza o middleware notLoggedIn para checar se já há um usuário logado na sessão
+//Como o middleware vem antes da arrow function da rota, ele é executado antes, logo, faz a verificação antes da rota ser executada
 Router.post("/login", notLoggedIn, async(req, res, next) => {
     try{ 
         const body = req.body;
