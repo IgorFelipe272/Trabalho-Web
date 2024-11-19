@@ -5,6 +5,7 @@ import backgroundBlob from "../utils/functions/backgroundBlob";
 
 //Pages
 import LoginPage from './pages/LoginPage'
+import LandingPage from "./pages/LandingPage";
 
 //Utiliza apenas a pagina de login no momento
 function App() {
@@ -18,7 +19,7 @@ function App() {
         <div ref={blobRef} className="backgroundBlob" id="backgroundBlob"></div>
       </div>
       
-      <LoginPage/>
+      <LandingPage/>
     </>
   )
 }

@@ -25,7 +25,7 @@ export default function LoginPage(){
 
     return(
         <>
-            <div className="container">
+            <div className="loginContainer">
                 <form className="formLogin" onSubmit={submitLogin}>
                     <input type="text" id="email" placeholder="Email" value={email} onChange={(e) => {
                         setEmail(e.target.value);

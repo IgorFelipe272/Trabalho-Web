@@ -1,0 +1,20 @@
+.imagesContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    position: absolute;
+    z-index: 1;
+
+    top: 25%;
+
+    img{
+        width: 40vmin;
+        height: 56vmin;
+
+        object-fit: cover;
+        object-position: 100% 50%;
+    }
+
+    transform: translate(10%, 0%);
+}
