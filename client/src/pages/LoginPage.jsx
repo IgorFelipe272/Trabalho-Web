@@ -1,7 +1,9 @@
 //Página onde o usuária realizará o login
 //Atualmente feita apenas para tese
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { login, logout } from "../services/user";
+
+import "../styles/LoginPage.css"
 
 export default function LoginPage(){
     const [email, setEmail] = useState("");
@@ -23,21 +25,21 @@ export default function LoginPage(){
 
     return(
         <>
-            <form className="formLogin" onSubmit={submitLogin}>
-                <input type="text" id="email" placeholder="Email" value={email} onChange={(e) => {
-                    setEmail(e.target.value);
-                }}/>
+            <div className="container">
+                <form className="formLogin" onSubmit={submitLogin}>
+                    <input type="text" id="email" placeholder="Email" value={email} onChange={(e) => {
+                        setEmail(e.target.value);
+                    }}/>
 
-                <input type="password" id="password" placeholder="Password" value={password} onChange={(e) => {
-                    setPassword(e.target.value);
-                }} />
+                    <input type="password" id="password" placeholder="Password" value={password} onChange={(e) => {
+                        setPassword(e.target.value);
+                    }} />
 
-                <button type="submit">Login</button>
-            </form>
+                    <button type="submit">Login</button>
+                </form>
 
-            <br></br>
-
-            <button onClick={submitLogout}>Realizar logout</button>
+                <button onClick={submitLogout}>Realizar logout</button>
+            </div>
         </>
     );
 }
