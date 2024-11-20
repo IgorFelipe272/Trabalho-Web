@@ -3,20 +3,32 @@ import "../styles/LandingPage.css";
 
 export default function LandingPage(){
     const display = useRef(null);
+    const imagesContainer = useRef(null);
+    const background = useRef(null);
 
+    //Image Slider Variables
     let initialPos, mousePos, maxPos;
-    let percentage, lastPercentage = -50;
+    let percentage = -50, lastPercentage = -50;
     let mouseDown = false;
+
+    //Background Movement Variables
+    let offset = 0, lastOffset = 0;
+
+    const [imageName, setImageName] = useState("");
 
     useEffect(() => {
         const savePos = (event) => {
             initialPos = event.clientX;
+
+            console.log("Posição salva em: " + initialPos);
             
             mouseDown = true;
         };
 
         const releasePosition = () => {
             lastPercentage = percentage;
+
+            console.log("Porcentegem salv: " + lastPercentage);
 
             mouseDown = false;
         };
@@ -28,7 +40,7 @@ export default function LandingPage(){
             mousePos = event.clientX - initialPos;
             maxPos = window.innerWidth / 2; 
 
-            percentage = (mousePos / maxPos) * 100 + lastPercentage;
+            percentage = Math.max(-75, Math.min(-25, (mousePos / maxPos) * 100 + lastPercentage));
 
             if(percentage > -25)
                 percentage = -25;
@@ -41,7 +53,7 @@ export default function LandingPage(){
                 }, {duration: 1200, fill: "forwards"});
             }
 
-            const images = display.current.querySelectorAll("img");
+            const images = imagesContainer.current.querySelectorAll("img");
 
             for(const image of images){
                 if(image){
@@ -52,23 +64,44 @@ export default function LandingPage(){
             }
         };
 
+        const moveBackground = () => {
+            console.log("movendo background");
+    
+            const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+            offset = Math.ceil(
+                (scrollTop / (scrollHeight - clientHeight)) * 100
+            );
+
+            const images = background.current.querySelectorAll("img");
+
+            for(const image of images){
+                if(image){
+                    image.animate({
+                        transform: `translate(0%, ${-offset * 0.3}%)`
+                    }, {duration: 2000, fill: "forwards"});
+                }
+            }
+
+            console.log("A posição do scroll é: " + offset);
+
+            lastOffset = offset;
+        };
+
         document.body.addEventListener("pointerdown", savePos);
         document.body.addEventListener("pointerup", releasePosition);
         document.body.addEventListener("pointermove", moveContainer);
+        window.addEventListener("scroll", moveBackground);
 
         return () => {
             document.body.removeEventListener("pointerdown", savePos);
             document.body.removeEventListener("pointerup", releasePosition);
             document.body.removeEventListener("pointermove", moveContainer);
+            window.removeEventListener("scroll", moveBackground);
         };
     }, []);
 
-    const [imageName, setImageName] = useState("");
-
     const mouseHoverEnter = (event) => {
         const imageName = event.target.name;
-
-        console.log(imageName);
 
         setImageName(imageName);
     };
@@ -79,20 +112,36 @@ export default function LandingPage(){
 
     return(
         <>
+            <div className="header">  
+                <img src="https://dev-unifei.github.io/assets/dev-u%20nova%20logo.png" alt="" />
+                <h1>DEVELOPS YOU!</h1>
 
+                <h2>Desenvolvimento de Jogos - UNIFEI</h2>
+                </div>
+
+            <div className="infoText">
+                <h2>Quem Somos</h2>
+                <p>A Dev-U foi criada em 2018 por alunos da UNIFEI pelo interesse comum de desenvolver jogos e evoluir juntos!</p>
+                <p>Nossa missão conta com o desenvolvimento de jogos, participação em Game Jams, desenvolvimento e pesquisas direcionadas para jogos educativos, e também na capacitação dos membros para o crescente mercado no Brasil!</p>
+
+                <h2>O que Fazemos</h2>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            
+                <div className="infoTextBackground"></div>
+            </div>
+            
+            
+            <div className="displayTitle">
+                <h2>Nossos Jogos</h2>
+                <p>Aqui estão alguns destaques dos muitos jogos que já produzimos</p>
+            </div>
+            
             <div ref={display} className="display">
-                <button>
-                    <h3>V</h3>
-                    <h3>E</h3>
-                    <h3>R</h3>
-                    <h3> </h3>
-                    <h3>M</h3>
-                    <h3>A</h3>
-                    <h3>I</h3>
-                    <h3>S</h3>
+                <button className="buttonLeft" name="Ver catálogo completo" onMouseEnter={mouseHoverEnter} onMouseLeave={mouseHoverLeave}>
+                    <h3>&lt;</h3>
                 </button>
 
-                <div className="imagesContainer">
+                <div ref={imagesContainer} className="imagesContainer">
                     <img 
                         src="https://img.itch.zone/aW1nLzE4NDE5NDg0LnBuZw==/315x250%23c/Y4xZfm.png" 
                         name="Mass Flux: Fuga Espacial" 
@@ -165,19 +214,21 @@ export default function LandingPage(){
                     />
                 </div>
 
-                <button>
-                    <h3>V</h3>
-                    <h3>E</h3>
-                    <h3>R</h3>
-                    <h3> </h3>
-                    <h3>M</h3>
-                    <h3>A</h3>
-                    <h3>I</h3>
-                    <h3>S</h3>
+                <button className="buttonRight" name="Ver catálogo completo" onMouseEnter={mouseHoverEnter} onMouseLeave={mouseHoverLeave}>
+                    <h3>&gt;</h3>
                 </button>
             </div>
 
-            <h3 className="imageNameText">{imageName}</h3>
+            <div className="imageNameText">
+                <h3>{imageName}</h3>
+            </div>
+
+            <div ref={background} className="backgroundImages">
+                <img className="img1" src="https://dev-unifei.github.io/assets/Dev_art_v2.png" alt="" />
+                <img className="img2" src="https://dev-unifei.github.io/assets/Dev_GD.png" alt="" />
+                <img className="img3" src="https://dev-unifei.github.io/assets/Dev_marketing.png" alt="" />
+                <img className="img4" src="https://dev-unifei.github.io/assets/Dev_Code.png" alt="" />
+            </div>
         </>
     )
 }

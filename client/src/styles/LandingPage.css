@@ -1,13 +1,123 @@
+.header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    padding: 4%;
+
+    img{
+        width: 40%;
+
+        margin: 0% auto;
+    }
+
+    h1{
+        font-size: 5rem;
+    }
+
+    h2{
+        font-size: 1.5rem;
+    }
+
+    color: white;
+}
+
+.infoText{
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+
+    text-align: center;
+
+    color: white;
+
+    padding: 4%;
+
+    h2{
+        font-size: 3rem;
+    }
+
+    p{
+        padding: 0 30%;
+
+        font-size: 1.5rem;
+    }
+
+    .infoTextBackground{
+        position: absolute;
+
+        width: 100%;
+        height: 100%;
+
+        background-color:darkorchid;
+
+        z-index: -5;
+
+        top: 0%;
+        left: 0%;
+    }
+}
+
+.displayTitle{
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+
+    text-align: center;
+
+    color: white;
+
+    padding: 4%;
+
+    h2{
+        font-size: 3rem;
+    }
+
+    p{
+        padding: 0 30%;
+
+        font-size: 1.5rem;
+    }
+}
+
 .display{
     display: flex;
     flex-direction: row;
-    gap: 15px;
+    gap: 50px;
 
-    position: absolute;
+    width: 133rem;
+    height: 17.9rem;
+
+    position: relative;
 
     left: 50%;
     top: 25%;
     transform: translate(-50%, 0);
+
+    .buttonLeft{
+        position: absolute;
+
+        height: 17.9rem;
+
+        left: 0%;
+        top: 50%;
+        transform: translate(0%, -50%);
+    }
+
+    .buttonRight{
+        position: absolute;
+        
+        height: 17.9rem;
+
+        right: 0%;
+        top: 50%;
+        transform: translate(0%, -50%);
+    }
 
     button:hover{
         cursor: pointer;
@@ -19,8 +129,11 @@
     flex-direction: row;
     gap: 15px;
 
-    position: relative;
+    position: absolute;
     z-index: 1;
+
+    left: 50%;
+    transform: translate(-50%, 0);
 
     img{
         width: 10rem;
@@ -55,16 +168,48 @@
 .imageNameText{
     color: white;
 
-    position: absolute;
+    position: relative;
 
-    top: 65%;
-    left: 50%;
-    transform: translate(-50%, 0%);
+    height: 6rem;
 
     font-size: x-large;
-    
+    text-align: center;
+
+    margin-top: 4%;
 }
 
 body{
     user-select: none;
+
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.backgroundImages{
+
+    img{
+        position: absolute;
+        z-index: -4;
+
+        width: 30%;
+    }
+
+    .img1{
+        top: 80%;
+        right: 5%;
+    }
+
+    .img2{
+        top: 130%;
+        left: 5%;
+    }
+
+    .img3{
+        top: 180%;
+        right: 5%;
+    }
+
+    .img4{
+        top: 230%;
+        left: 5%;
+    }
 }
