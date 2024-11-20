@@ -15,33 +15,17 @@ export default function LandingPage(){
             mouseDown = true;
         };
 
-        document.body.addEventListener("pointerdown", savePos);
-
-        return () => {
-            document.body.removeEventListener("pointerdown", savePos);
-        };
-    });
-
-    useEffect(() => {
         const releasePosition = () => {
             lastPercentage = percentage;
 
             mouseDown = false;
         };
 
-        document.body.addEventListener("pointerup", releasePosition);
-
-        return () => {
-            document.body.removeEventListener("pointerup", releasePosition);
-        };
-    });
-
-    useEffect(() => {
         const moveContainer = (event) => {
             if(!mouseDown)
                 return;
             
-            mousePos = event.clientX - parseFloat(initialPos);
+            mousePos = event.clientX - initialPos;
             maxPos = window.innerWidth / 2; 
 
             percentage = (mousePos / maxPos) * 100 + lastPercentage;
@@ -68,12 +52,16 @@ export default function LandingPage(){
             }
         };
 
+        document.body.addEventListener("pointerdown", savePos);
+        document.body.addEventListener("pointerup", releasePosition);
         document.body.addEventListener("pointermove", moveContainer);
 
         return () => {
+            document.body.removeEventListener("pointerdown", savePos);
+            document.body.removeEventListener("pointerup", releasePosition);
             document.body.removeEventListener("pointermove", moveContainer);
         };
-    });
+    }, []);
 
     const [imageName, setImageName] = useState("");
 
