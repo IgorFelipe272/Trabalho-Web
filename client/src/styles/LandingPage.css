@@ -8,12 +8,12 @@
     width: 100%;
 
     img{
-        width: 90%;
+        width: 80%;
         max-width: 1750px;
 
         margin: 0% auto;
 
-        position: absolute;
+        position: relative;
         top: -10%;
     }
 
@@ -94,6 +94,166 @@
     }
 }
 
+.areas{
+    display: flex;
+    flex-direction: column;
+    
+    color: white;
+
+    width: 100%;
+
+    h2{
+        text-align: center;
+
+        font-size: 3rem;
+    }
+
+    .areaLeft{
+        display: flex;
+        flex-direction: row;
+
+        justify-content: center;
+        align-items: center;
+
+        box-sizing: border-box;
+
+        height: 100%;
+
+        img{
+            margin-left: -20%;
+
+            animation: imageFadeInLeft linear;
+            animation-timeline: view(40px 40px);
+        }
+
+        .areaText{
+            text-align: left;
+
+            animation: textFadeInLeft linear;
+            animation-timeline: view();
+
+            h2{
+                text-align: left;
+
+                margin-left: 4%;
+            }
+
+            p{
+                margin-left: 4%;
+            }
+        }
+    }
+
+    .areaRight{
+        display: flex;
+        flex-direction: row;
+
+        justify-content: center;
+        align-items: center;
+
+        box-sizing: border-box;
+
+        height: 100%;
+
+        img{
+            margin-left: 30%;
+
+            animation: imageFadeInRight linear;
+            animation-timeline: view(40px 40px);
+        }
+
+        .areaText{
+            text-align: right;
+
+            animation: textFadeInRight linear;
+            animation-timeline: view();
+
+            h2{
+                text-align: right;
+
+                margin-right: 4%;
+            }
+
+            p{
+                margin-right: 4%;
+            }
+        }
+    }
+
+    .areaText{
+        width: 70%;
+
+        z-index: 3;
+
+        h2{
+            font-size: 2rem;
+        }
+
+        p{
+            font-size: 1.5rem;
+        }
+    }
+
+    .areaImage{
+        width: 30%;
+ 
+        img{
+            width: 89%;
+            object-fit: contain;
+
+            transform: scale(1.5);
+        }
+    }
+}
+
+@keyframes imageFadeInLeft {
+    from {transform: scale(1.5) translate(0%);}
+    
+    30% {transform: scale(2.0) translate(15%);}
+
+    70% {transform: scale(2.0) translate(15%);}
+
+    to {transform: scale(1.5) translate(0%);}
+}
+
+@keyframes imageFadeInRight {
+    from {transform: scale(1.5) translate(0%);}
+    
+    30% {transform: scale(2.0) translate(-15%);}
+
+    70% {transform: scale(2.0) translate(-15%);}
+
+    to {transform: scale(1.5) translate(0%);}
+}
+
+@keyframes textFadeInLeft {
+    0% {transform:  translate(100%, 0%);}
+
+    25% {transform:  translate(100%, 0%);}
+
+    28% {transform:  translate(0%, 0%);}
+
+    72% {transform:  translate(0%, 0%);}
+
+    75% {transform:  translate(100%, 0%);}
+
+    100% {transform:  translate(100%, 0%);}
+}
+
+@keyframes textFadeInRight {
+    0% {transform:  translate(-100%, 0%);}
+
+    25% {transform:  translate(-100%, 0%);}
+
+    28% {transform:  translate(0%, 0%);}
+
+    72% {transform:  translate(0%, 0%);}
+
+    75% {transform:  translate(-100%, 0%);}
+
+    100% {transform:  translate(-100%, 0%);}
+}
+
 .gamesDisplay{
     display: flex;
     flex-direction: column;
@@ -101,6 +261,8 @@
 
     height: 100vh;
     width: 100%;
+
+    margin-top: 5%;
 
     .displayTitle{
         display: flex;
@@ -217,33 +379,4 @@
 
 body{
     user-select: none;
-}
-
-.background{
-    img{
-        position: absolute;
-        z-index: -4;
-
-        width: 50%;
-    }
-
-    .img1{
-        top: 95%;
-        right: -7%;
-    }
-
-    .img2{
-        top: 145%;
-        left: -7%;
-    }
-
-    .img3{
-        top: 210%;
-        right: -7%;
-    }
-
-    .img4{
-        top: 250%;
-        left: -7%;
-    }
 }

@@ -71,39 +71,14 @@ export default function LandingPage(){
             }
         };
 
-        const moveBackground = () => {
-            console.log("movendo background");
-    
-            const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-            offset = Math.ceil(
-                (scrollTop / (scrollHeight - clientHeight)) * 100
-            );
-
-            const images = background.current.querySelectorAll("img");
-
-            for(const image of images){
-                if(image){
-                    image.animate({
-                        transform: `translate(0%, ${-offset * 0.3}%)`
-                    }, {duration: 2000, fill: "forwards"});
-                }
-            }
-
-            console.log("A posição do scroll é: " + offset);
-
-            lastOffset = offset;
-        };
-
         document.body.addEventListener("pointerdown", savePos);
         document.body.addEventListener("pointerup", releasePosition);
         document.body.addEventListener("pointermove", moveContainer);
-        window.addEventListener("scroll", moveBackground);
 
         return () => {
             document.body.removeEventListener("pointerdown", savePos);
             document.body.removeEventListener("pointerup", releasePosition);
             document.body.removeEventListener("pointermove", moveContainer);
-            window.removeEventListener("scroll", moveBackground);
         };
     }, []);
 
@@ -137,6 +112,50 @@ export default function LandingPage(){
                     <p>Nossa missão conta com o desenvolvimento de jogos, participação em Game Jams, desenvolvimento e pesquisas direcionadas para jogos educativos, e também na capacitação dos membros para o crescente mercado no Brasil!</p>
                 </div>
                 <div className="infoTextBackground"></div>
+            </div>
+
+            <div className="areas">
+                <h2>Nossas Áreas</h2>
+
+                <div className="areaRight">
+                    <div className="areaText">
+                        <h2>Programação</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, ullam? Nostrum eveniet culpa delectus facere at, consequatur quo hic atque officia corrupti corporis fugiat? Sed incidunt eaque consequuntur sequi quo.</p>
+                    </div>
+                    <div className="areaImage">
+                        <img src={PGLogo} alt="" />
+                    </div>
+                </div>
+
+                <div className="areaLeft">
+                    <div className="areaImage">
+                        <img src={GDLogo} alt="" />
+                    </div>
+                    <div className="areaText">
+                        <h2>Game Desing</h2>
+                        <p>Fazer design dos jogos seila kkkk Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi suscipit inventore, sequi doloremque quaerat quisquam quia nam laborum. Error asperiores ab consequatur porro magnam accusamus ex corporis neque quibusdam facere.</p>
+                    </div>
+                </div>
+
+                <div className="areaRight">
+                    <div className="areaText">
+                        <h2>Audiovisual</h2>
+                        <p>Fazer audio e visual aj falei q nsei Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus fugit cumque ad est quasi iusto iure? Deleniti ex quos blanditiis, nostrum distinctio doloribus! Placeat beatae porro sequi dignissimos, laborum numquam.</p>
+                    </div>
+                    <div className="areaImage">
+                        <img src={AVLogo} alt="" />
+                    </div>
+                </div>
+
+                <div className="areaLeft">
+                    <div className="areaImage">
+                        <img src={GMLogo} alt="" />
+                    </div>
+                    <div className="areaText">
+                        <h2>Gestão e Marketing</h2>
+                        <p>Faz nada kkkkkkkkkkkkkk Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore, officiis incidunt vitae fugiat laboriosam, voluptatum temporibus repudiandae eum doloribus porro odio iusto assumenda deserunt quasi pariatur fuga quae omnis nemo?</p>
+                    </div>
+                </div>
             </div>
             
             <div className="gamesDisplay">
@@ -232,17 +251,7 @@ export default function LandingPage(){
                 <div className="imageNameText">
                     <h3>{imageName}</h3>
                 </div>
-            </div>
-            
-            <div className="backgroundImages">
-                <div ref={background} className="background">
-                    <img className="img1" src={PGLogo} alt="" />
-                    <img className="img2" src={GDLogo} alt="" />
-                    <img className="img3" src={AVLogo} alt="" />
-                    <img className="img4" src={GMLogo} alt="" />
-                </div>
-            </div>
-            
+            </div>            
         </>
     )
 }
