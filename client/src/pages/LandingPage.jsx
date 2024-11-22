@@ -9,17 +9,14 @@ import PGLogo from "../assets/logos/PG.png";
 import AVLogo from "../assets/logos/AV.png";
 
 export default function LandingPage(){
+    const imagesDisplay = useRef(null);
     const display = useRef(null);
     const imagesContainer = useRef(null);
-    const background = useRef(null);
 
     //Image Slider Variables
     let initialPos, mousePos, maxPos;
     let percentage = -50, lastPercentage = -50;
     let mouseDown = false;
-
-    //Background Movement Variables
-    let offset = 0, lastOffset = 0;
 
     const [imageName, setImageName] = useState("");
 
@@ -47,13 +44,8 @@ export default function LandingPage(){
             mousePos = event.clientX - initialPos;
             maxPos = window.innerWidth / 2; 
 
-            percentage = Math.max(-75, Math.min(-25, (mousePos / maxPos) * 100 + lastPercentage));
-
-            if(percentage > -25)
-                percentage = -25;
-            else if(percentage < -75)
-                percentage = -75;
-
+            percentage = Math.max(-100, Math.min(0, (mousePos / maxPos) * 100 + lastPercentage));
+            
             if(display.current){
                 display.current.animate({
                     transform: `translate(${percentage}%, 0%)`
@@ -71,15 +63,33 @@ export default function LandingPage(){
             }
         };
 
-        document.body.addEventListener("pointerdown", savePos);
-        document.body.addEventListener("pointerup", releasePosition);
-        document.body.addEventListener("pointermove", moveContainer);
+        const observer = new IntersectionObserver(elements => {
+            elements.forEach(element => {
+                if(element.isIntersecting){
+                    element.target.classList.add("show");
+                    return;
+                }
+
+                element.target.classList.remove("show");
+            })
+        });
+
+        const animatedElements = document.querySelectorAll(".hidden");
+        animatedElements.forEach((element) => observer.observe(element));
+
+        if(imagesDisplay.current){
+            imagesDisplay.current.addEventListener("pointerdown", savePos);
+            imagesDisplay.current.addEventListener("pointerup", releasePosition);
+            imagesDisplay.current.addEventListener("pointermove", moveContainer);
+        }
 
         return () => {
-            document.body.removeEventListener("pointerdown", savePos);
-            document.body.removeEventListener("pointerup", releasePosition);
-            document.body.removeEventListener("pointermove", moveContainer);
-        };
+            imagesDisplay.current.removeEventListener("pointerdown", savePos);
+            imagesDisplay.current.removeEventListener("pointerup", releasePosition);
+            imagesDisplay.current.removeEventListener("pointermove", moveContainer);
+
+            animatedElements.forEach((element) => observer.unobserve(element));
+        };g
     }, []);
 
     const mouseHoverEnter = (event) => {
@@ -95,81 +105,82 @@ export default function LandingPage(){
     return(
         <>
             <div className="header">  
-                <img src={mainLogo} alt="" />
-                <h1>DEVELOPS YOU!</h1>
+                <img src={mainLogo} alt="mainLogo" className="hidden"/>
+                <h1 className="hidden">DEVELOPS YOU!</h1>
 
-                <h2>Desenvolvimento de Jogos - UNIFEI</h2>
+                <h2 className="hidden">Desenvolvimento de Jogos - UNIFEI</h2>
             </div>
 
             <div className="infoText">
                 <div className="subContainer1">
-                    <h2>Quem Somos</h2>
-                    <p>A Dev-U foi criada em 2018 por alunos da UNIFEI pelo interesse comum de desenvolver jogos e evoluir juntos!</p>
+                    <h2 className="hidden">Quem Somos</h2>
+                    <p className="hidden">A Dev-U foi criada em 2018 por alunos da UNIFEI pelo interesse comum de desenvolver jogos e evoluir juntos!</p>
                 </div>
 
                 <div className="subContainer2">
-                    <h2>O que Fazemos</h2>
-                    <p>Nossa missão conta com o desenvolvimento de jogos, participação em Game Jams, desenvolvimento e pesquisas direcionadas para jogos educativos, e também na capacitação dos membros para o crescente mercado no Brasil!</p>
+                    <h2 className="hidden">O que Fazemos</h2>
+                    <p className="hidden">Nossa missão conta com o desenvolvimento de jogos, participação em Game Jams, desenvolvimento e pesquisas direcionadas para jogos educativos, e também na capacitação dos membros para o crescente mercado no Brasil!</p>
                 </div>
+
                 <div className="infoTextBackground"></div>
             </div>
 
             <div className="areas">
-                <h2>Nossas Áreas</h2>
+                <h2 className="hidden">Nossas Áreas</h2>
 
                 <div className="areaRight">
                     <div className="areaText">
                         <h2>Programação</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, ullam? Nostrum eveniet culpa delectus facere at, consequatur quo hic atque officia corrupti corporis fugiat? Sed incidunt eaque consequuntur sequi quo.</p>
+                        <p>A área de Programação trabalha para dar vida aos planos desenvolvidos pelas demais áreas. Sem os programadores o jogo é basicamente uma coleção de ideias inanimadas, por isso os programadores as transformam em um conjunto de dados que por sua vez podem ser interpretados e executados por qualquer tipo maquina moderna, fazendo disso então, um jogo digital / videogame.</p>
                     </div>
+
                     <div className="areaImage">
-                        <img src={PGLogo} alt="" />
+                        <img className="hidden" src={PGLogo} alt="PGLogo" />
                     </div>
                 </div>
 
                 <div className="areaLeft">
                     <div className="areaImage">
-                        <img src={GDLogo} alt="" />
+                        <img className="hidden" src={GDLogo} alt="PGLogo" />
                     </div>
+
                     <div className="areaText">
                         <h2>Game Desing</h2>
-                        <p>Fazer design dos jogos seila kkkk Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi suscipit inventore, sequi doloremque quaerat quisquam quia nam laborum. Error asperiores ab consequatur porro magnam accusamus ex corporis neque quibusdam facere.</p>
+                        <p>Game Design é a arte de criar uma experiencia! Nosso único trabalho é tornar o game interessante e divertido para o player, utilizando todas as ferramentas possíveis para isso. Aqui nós criamos mecânicas, montamos e apresentamos o pitch dos games, fazemos balanceamento, planejamos como o gameplay vai ser executado e muito mais.</p>
                     </div>
                 </div>
 
                 <div className="areaRight">
                     <div className="areaText">
                         <h2>Audiovisual</h2>
-                        <p>Fazer audio e visual aj falei q nsei Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus fugit cumque ad est quasi iusto iure? Deleniti ex quos blanditiis, nostrum distinctio doloribus! Placeat beatae porro sequi dignissimos, laborum numquam.</p>
+                        <p>A área de Audiovisual é responsável por transmitir para o jogador emoções, ideias e informação. Nós procuramos apelar para os sentidos do jogador com imagens, Interfaces de Usuário, sprites, modelos 3D, música, efeitos sonoros e dublagem para transmitir o que o jogo precisa.</p>
                     </div>
+
                     <div className="areaImage">
-                        <img src={AVLogo} alt="" />
+                        <img className="hidden" src={AVLogo} alt="AVLogo" />
                     </div>
                 </div>
 
                 <div className="areaLeft">
                     <div className="areaImage">
-                        <img src={GMLogo} alt="" />
+                        <img className="hidden" src={GMLogo} alt="GMLogo" />
                     </div>
+
                     <div className="areaText">
                         <h2>Gestão e Marketing</h2>
-                        <p>Faz nada kkkkkkkkkkkkkk Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore, officiis incidunt vitae fugiat laboriosam, voluptatum temporibus repudiandae eum doloribus porro odio iusto assumenda deserunt quasi pariatur fuga quae omnis nemo?</p>
+                        <p>Gestão & Marketing é a área responsável por se comunicar com o público do projeto, organizar eventos, firmar parcerias, fazer divulgação e tesouraria. Eles lidam com as questões burocráticas e financeiras do projeto.</p>
                     </div>
                 </div>
             </div>
             
-            <div className="gamesDisplay">
+            <div ref={imagesDisplay} className="gamesDisplay">
                 <div className="displayTitle">
-                    <h2>Nossos Jogos</h2>
-                    <p>Aqui estão alguns destaques dos muitos jogos que já produzimos</p>
+                    <h2 className="hidden">Nossos Jogos</h2>
+                    <p className="hidden">Aqui estão alguns destaques dos muitos jogos que já produzimos</p>
                 </div>
                 
                 <div ref={display} className="display">
-                    <button className="buttonLeft" name="Ver catálogo completo" onMouseEnter={mouseHoverEnter} onMouseLeave={mouseHoverLeave}>
-                        <h3>&lt;</h3>
-                    </button>
-
-                    <div ref={imagesContainer} className="imagesContainer">
+                    <div ref={imagesContainer} className="imagesContainer hidden">
                         <img 
                             src="https://img.itch.zone/aW1nLzE4NDE5NDg0LnBuZw==/315x250%23c/Y4xZfm.png" 
                             name="Mass Flux: Fuga Espacial" 
@@ -240,12 +251,42 @@ export default function LandingPage(){
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
                         />
+                        <img 
+                            src="https://img.itch.zone/aW1nLzE0ODQzOTk5LnBuZw==/315x250%23c/Hokm6K.png" 
+                            name="Pun and Run" 
+                            draggable="false"
+                            onMouseEnter={mouseHoverEnter}
+                            onMouseLeave={mouseHoverLeave}
+                        />
+                        <img 
+                            src="https://img.itch.zone/aW1nLzEzODY2ODkyLmdpZg==/315x250%23cm/9s5x4q.gif" 
+                            name="UnderBrewed" 
+                            draggable="false"
+                            onMouseEnter={mouseHoverEnter}
+                            onMouseLeave={mouseHoverLeave}
+                        />
+                        <img 
+                            src="https://img.itch.zone/aW1nLzkyNTEwNzEuanBlZw==/315x250%23c/ExHidf.jpeg" 
+                            name="Devmon!" 
+                            draggable="false"
+                            onMouseEnter={mouseHoverEnter}
+                            onMouseLeave={mouseHoverLeave}
+                        />
+                        <img 
+                            src="https://img.itch.zone/aW1nLzEzMjQ2Mzg3LmpwZWc=/315x250%23c/5UCtyg.jpeg" 
+                            name="Bagre in Abyss" 
+                            draggable="false"
+                            onMouseEnter={mouseHoverEnter}
+                            onMouseLeave={mouseHoverLeave}
+                        />
+                        <img 
+                            src="https://img.itch.zone/aW1nLzEwNzAzNjY1LnBuZw==/315x250%23c/YIzRTz.png" 
+                            name="Bafo Tycoon" 
+                            draggable="false"
+                            onMouseEnter={mouseHoverEnter}
+                            onMouseLeave={mouseHoverLeave}
+                        />
                     </div>
-
-                    <button className="buttonRight" name="Ver catálogo completo" onMouseEnter={mouseHoverEnter} onMouseLeave={mouseHoverLeave}>
-                        <h3>&gt;</h3>
-                    </button>
-                    
                 </div>
 
                 <div className="imageNameText">

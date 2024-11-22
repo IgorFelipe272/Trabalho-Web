@@ -21,6 +21,8 @@ function App() {
 
     document.body.addEventListener("pointermove", moveBlob);
 
+    window.history.scrollRestoration = "manual";
+
     return () => {
         document.body.removeEventListener("pointermove", moveBlob);
     };
