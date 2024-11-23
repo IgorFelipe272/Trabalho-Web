@@ -12,6 +12,9 @@ import {
 } from "chart.js";
 import { Line, Bar } from "react-chartjs-2";
 
+import "../styles/MembrosPontuacao.css";
+
+
 // Registrar os elementos necessários para gráficos de linhas e barras
 ChartJS.register(LineElement, BarElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
 
@@ -103,7 +106,7 @@ export default function MembrosPontuacao() {
   if (!data) return <p>Carregando...</p>;
 
   return (
-    <div>
+    <div className="membro">
       <h1>Gráfico de Pontuação</h1>
       <button onClick={toggleChartType} style={{ marginBottom: "20px" }}>
         Alternar para {chartType === "line" ? "Gráfico de Barras" : "Gráfico de Linhas"}

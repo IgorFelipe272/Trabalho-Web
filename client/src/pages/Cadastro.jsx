@@ -3,7 +3,7 @@ import "../styles/Cadastro.css";
 
 export default function Cadastro() {
     const [formData, setFormData] = useState({
-        realPhoto: null,
+        //realPhoto: null,
         profilePhoto: null,
         area: "",
         github: "",
@@ -31,7 +31,7 @@ export default function Cadastro() {
         event.preventDefault();
 
         const {
-            realPhoto,
+            //realPhoto,
             profilePhoto,
             area,
             github,
@@ -44,7 +44,7 @@ export default function Cadastro() {
 
         // Verificar campos obrigatórios
         const missing = [];
-        if (!realPhoto) missing.push("realPhoto");
+        //if (!realPhoto) missing.push("realPhoto");
         if (!profilePhoto) missing.push("profilePhoto");
         if (!area) missing.push("area");
         if (!github) missing.push("github");
@@ -76,11 +76,9 @@ export default function Cadastro() {
         );
     };
 
-    return (
-        <div className="signup-container">
-            <h1>Cadastro de Membro</h1>
-            <form className="signup-form" onSubmit={handleSubmit}>
-                {renderLabel("realPhoto", "Foto Real do Membro")}
+    /*
+
+{renderLabel("realPhoto", "Foto Real do Membro")}
                 <input
                     type="file"
                     id="realPhoto"
@@ -88,6 +86,14 @@ export default function Cadastro() {
                     accept="image/*"
                     onChange={handleFileChange}
                 />
+
+    */
+    return (
+        <div className="signup-container">
+            <h1>Cadastro de Membro</h1>
+
+            <form className="signup-form" onSubmit={handleSubmit}>
+                
 
                 {renderLabel("profilePhoto", "Foto de Perfil")}
                 <input

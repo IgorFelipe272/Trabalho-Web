@@ -80,3 +80,48 @@ body{
     
     font-family: 'Courier New', Courier, monospace;
 }
+
+
+
+
+
+
+
+
+
+/* Estilo para o header */
+.header2 {
+    position: fixed; /* Fixa a barra no topo da página */
+    top: 0; /* Alinha no topo */
+    left: 0; /* Alinha à esquerda */
+    width: 100%; /* Faz o header ocupar toda a largura */
+    background-color: #222; /* Cor de fundo */
+    padding: 1rem; /* Espaçamento interno */
+    display: flex; /* Define como flexbox */
+    justify-content: space-around; /* Espaça igualmente os botões */
+    align-items: center; /* Alinha os itens no centro verticalmente */
+    z-index: 1000; /* Garante que o header fique acima de outros elementos */
+  }
+  
+  /* Estilo dos botões */
+  .header2 button {
+    color: white;
+    background: none;
+    border: 1px solid white;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .header2 button:hover {
+    background-color: white;
+    color: #222;
+  }
+  
+  /* Ajusta o espaço para que o conteúdo principal não fique escondido pelo header */
+  .bodyContainer {
+    padding-top: 4rem; /* Espaço igual à altura do header */
+  }
+  
+  
+  
