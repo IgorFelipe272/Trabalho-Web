@@ -4,6 +4,9 @@ import "../src/styles/App.css"
 //Pages
 import LoginPage from './pages/LoginPage'
 import LandingPage from "./pages/LandingPage";
+import Cadastro from "./pages/Cadastro";
+import MembrosPontuacao from './pages/MembrosPontuacao'; 
+
 
 //Utiliza apenas a pagina de login no momento
 function App() {
@@ -33,9 +36,15 @@ function App() {
         <div ref={blobRef} className="backgroundBlob" id="backgroundBlob"></div>
       </div>
       
+      
+      
+      
       <LandingPage/>
+
     </>
   )
 }
-
+//<LandingPage/>
+//<Cadastro/>
+//<MembrosPontuacao />
 export default App
