@@ -126,15 +126,10 @@
 
         z-index: -1;
 
-        animation: backgroundMovement 2s linear forwards;
-        animation-timeline: view();
+        box-shadow: 0 0 70px rgba(125, 0, 70, 0.5);
+
+        transition: background-position 2s ease-out;
     } 
-}
-
-@keyframes backgroundMovement {
-    0% {background-position: 0% 0%;}
-
-    100% {background-position: 100% 0%;}
 }
 
 .areas{
@@ -312,6 +307,8 @@
     background-image: url("https://img.freepik.com/free-vector/background-pixel-rain-abstract_23-2148360346.jpg?ga=GA1.1.526220300.1716804354&semt=ais_hybrid");
     background-size: 100vh;
 
+    box-shadow: 0 0 70px rgba(125, 0, 70, 0.5);
+
     .displayTitle{
         display: flex;
         flex-direction: column;
@@ -356,30 +353,6 @@
         left: 50%;
         top: 15%;
         transform: translate(-50%, 0);
-    
-        .buttonLeft{
-            position: absolute;
-    
-            height: 18rem;
-    
-            left: 0%;
-            top: 50%;
-            transform: translate(0%, -50%);
-        }
-    
-        .buttonRight{
-            position: absolute;
-            
-            height: 18rem;
-    
-            right: 0%;
-            top: 50%;
-            transform: translate(0%, -50%);
-        }
-    
-        button:hover{
-            cursor: pointer;
-        }
 
         .imagesContainer{
             display: flex;

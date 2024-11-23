@@ -12,27 +12,27 @@ export default function LandingPage(){
     const imagesDisplay = useRef(null);
     const display = useRef(null);
     const imagesContainer = useRef(null);
+    const dynamicBackground = useRef(null);
 
-    //Image Slider Variables
+    //Variáveis do slider de imagens
     let initialPos, mousePos, maxPos;
     let percentage = -50, lastPercentage = -50;
     let mouseDown = false;
+
+    //Variáveis do background dinâmico
+    let lastPos = 0;
 
     const [imageName, setImageName] = useState("");
 
     useEffect(() => {
         const savePos = (event) => {
             initialPos = event.clientX;
-
-            console.log("Posição salva em: " + initialPos);
             
             mouseDown = true;
         };
 
         const releasePosition = () => {
             lastPercentage = percentage;
-
-            console.log("Porcentegem salv: " + lastPercentage);
 
             mouseDown = false;
         };
@@ -63,6 +63,18 @@ export default function LandingPage(){
             }
         };
 
+        const moveBackground = () => {
+            if(dynamicBackground.current){
+                console.log("Movendo o background");
+
+                const newPos = ((lastPos + window.scrollY) / document.documentElement.scrollHeight) * 300;
+
+                dynamicBackground.current.style.backgroundPosition = `${newPos}% 0%`;
+                
+                lastPos = newPos;
+            }
+        };
+
         const observer = new IntersectionObserver(elements => {
             elements.forEach(element => {
                 element.target.classList.toggle("show", element.isIntersecting);
@@ -78,13 +90,17 @@ export default function LandingPage(){
             imagesDisplay.current.addEventListener("pointermove", moveContainer);
         }
 
+        window.addEventListener("scroll", moveBackground);
+
         return () => {
             imagesDisplay.current.removeEventListener("pointerdown", savePos);
             imagesDisplay.current.removeEventListener("pointerup", releasePosition);
             imagesDisplay.current.removeEventListener("pointermove", moveContainer);
 
             animatedElements.forEach((element) => observer.unobserve(element));
-        };g
+
+            window.removeEventListener("scroll", moveBackground);
+        };
     }, []);
 
     const mouseHoverEnter = (event) => {
@@ -114,10 +130,10 @@ export default function LandingPage(){
 
                 <div className="subContainer2">
                     <h2 className="hidden">O que Fazemos</h2>
-                    <p className="hidden">Nossa missão conta com o desenvolvimento de jogos, participação em Game Jams, desenvolvimento e pesquisas direcionadas para jogos educativos, e também na capacitação dos membros para o crescente mercado no Brasil!</p>
+                    <p className="hidden">Nossa missão conta com o desenvolvimento de jogos, participação em Game Jams, desenvolvimento e pesquisas direcionadas para jogos educativos, e também com a capacitação dos membros para o crescente mercado de jogos no Brasil!</p>
                 </div>
 
-                <div className="infoTextBackground"></div>
+                <div ref={dynamicBackground} className="infoTextBackground"></div>
             </div>
 
             <div className="areas">
@@ -126,7 +142,7 @@ export default function LandingPage(){
                 <div className="areaRight">
                     <div className="areaText">
                         <h2 className="hidden">Programação</h2>
-                        <p className="hidden">A área de Programação trabalha para dar vida aos planos desenvolvidos pelas demais áreas. Sem os programadores o jogo é basicamente uma coleção de ideias inanimadas, por isso os programadores as transformam em um conjunto de dados que por sua vez podem ser interpretados e executados por qualquer tipo maquina moderna, fazendo disso então, um jogo digital / videogame.</p>
+                        <p className="hidden">A área de Programação trabalha para dar vida aos planos desenvolvidos pelas demais áreas. Os programadores transformam uma coleção de ideias inanimadas em um conjunto de dados que por sua vez podem ser interpretados e executados por qualquer tipo de maquina moderna, fazendo disso, então, um jogo digital / videogame.</p>
                     </div>
 
                     <div className="areaImage">
@@ -141,14 +157,14 @@ export default function LandingPage(){
 
                     <div className="areaText">
                         <h2 className="hidden">Game Design</h2>
-                        <p className="hidden">Game Design é a arte de criar uma experiencia! Nosso único trabalho é tornar o game interessante e divertido para o player, utilizando todas as ferramentas possíveis para isso. Aqui nós criamos mecânicas, montamos e apresentamos o pitch dos games, fazemos balanceamento, planejamos como o gameplay vai ser executado e muito mais.</p>
+                        <p className="hidden">Game Design é a arte de criar uma experiência, visando tornar o jogo interessante e divertido para o jogador. Game Designers criam mecânicas, montam e apresentam o pitch dos games, tratam do balanceamento, planejam como a gameplay vai ser executada e muito mais.</p>
                     </div>
                 </div>
 
                 <div className="areaRight">
                     <div className="areaText">
                         <h2 className="hidden">Audiovisual</h2>
-                        <p className="hidden">A área de Audiovisual é responsável por transmitir para o jogador emoções, ideias e informação. Nós procuramos apelar para os sentidos do jogador com imagens, Interfaces de Usuário, sprites, modelos 3D, música, efeitos sonoros e dublagem para transmitir o que o jogo precisa.</p>
+                        <p className="hidden">A área de Audiovisual é responsável por transmitir para o jogador emoções, ideias e informações. Artistas procuram apelar para os sentidos do jogador com imagens, interfaces de usuário, sprites, modelos 3D, música, efeitos sonoros e dublagem para transmitir a sensação do jogo.</p>
                     </div>
 
                     <div className="areaImage">
@@ -163,7 +179,7 @@ export default function LandingPage(){
 
                     <div className="areaText">
                         <h2 className="hidden">Gestão e Marketing</h2>
-                        <p className="hidden">Gestão & Marketing é a área responsável por se comunicar com o público do projeto, organizar eventos, firmar parcerias, fazer divulgação e tesouraria. Eles lidam com as questões burocráticas e financeiras do projeto.</p>
+                        <p className="hidden">Gestão & Marketing é a área responsável por se comunicar com o público do projeto, organizar eventos, firmar parcerias, fazer divulgação e tesouraria. Os gestores lidam com as questões burocráticas e financeiras do projeto.</p>
                     </div>
                 </div>
             </div>
