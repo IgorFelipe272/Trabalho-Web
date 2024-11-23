@@ -34,7 +34,7 @@
     }
 
     .hidden{
-        transition: all 1s;
+        transition: opacity 1s, transform 1s;
 
         opacity: 0;
         transform: scale(.5);
@@ -79,7 +79,7 @@
         text-align: right;
 
         .hidden{
-            transition: all 1s;
+            transition: opacity 1s, transform 1s;
 
             opacity: 0;
             transform: translateX(-100%);
@@ -101,7 +101,7 @@
         text-align: left;
 
         .hidden{
-            transition: all 1s;
+            transition: opacity 1s, transform 1s;
 
             opacity: 0;
             transform: translateX(100%);
@@ -176,7 +176,7 @@
         .areaImage{
             /*Efeito de animação ao entrar na tela apenas para as imagens*/
             .hidden{
-                transition: all 1s;
+                transition: opacity 1s, transform 1s;
 
                 transform: scale(1.5);
     
@@ -192,9 +192,9 @@
 
         /*Efeito de animação ao entrar na tela para o parágrafo e para o nome da área*/
         .hidden{
-            h1{transition: all 2s;}
+            h1{transition: opacity 2s, transform 2s;}
 
-            p{transition: all 1s;}
+            p{transition: opacity 1s, transform 2s;}
             
             opacity: 0;
             transform: translateX(100%);
@@ -232,7 +232,7 @@
         .areaImage{
             /*Efeito de animação ao entrar na tela apenas para as imagens*/
             .hidden{
-                transition: all 1s;
+                transition: opacity 1s, transform 1s;
 
                 transform: scale(1.5);
     
@@ -250,9 +250,9 @@
 
         /*Efeito de animação ao entrar na tela para o parágrafo e para o nome da área*/
         .hidden{
-            h1{transition: all 2s;}
+            h1{transition: opacity 2s, transform 2s;}
 
-            p{transition: all 1s;}
+            p{transition: opacity 1s, transform 2s;}
             
             opacity: 0;
             transform: translateX(-100%);
@@ -282,7 +282,7 @@
 
     /*Efeito de aparecer na tela apenas para o título*/
     .hidden{
-        transition: all 1s;
+        transition: opacity 1s, transform 1s;
         
         opacity: 0;
         transform: translateY(100%);
@@ -328,7 +328,7 @@
         }
 
         .hidden{
-            transition: all 1s;
+            transition: opacity 1s, transform 1s;
 
             opacity: 0;
             transform: translateY(100%);
@@ -374,9 +374,18 @@
                 object-position: center center;
         
                 border: solid 2px black;
+            }
+
+            .hidden{
+                transition: opacity 1s, transform 1s, width 400ms ease-out;
         
-                transition: transform 400ms ease;
-                transition: width 400ms ease;
+                opacity: 0;
+                transform: scale(0.8);
+            }
+        
+            .show{
+                opacity: 1;
+                transform: scale(1);
             }
         }
         
@@ -397,14 +406,6 @@
         }
     }
 
-    .hidden{
-        transition: all 1s;
-
-        opacity: 0;
-    }
-
-    .show{opacity: 1;}
-
     .imageNameText{
         color: white;
     
@@ -420,4 +421,10 @@
 
 body{
     user-select: none;
+}
+
+@media(prefers-reduced-motion) {
+    .hidden{
+        transition: none;
+    }
 }

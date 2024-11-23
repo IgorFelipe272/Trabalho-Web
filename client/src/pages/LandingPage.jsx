@@ -191,13 +191,14 @@ export default function LandingPage(){
                 </div>
                 
                 <div ref={display} className="display">
-                    <div ref={imagesContainer} className="imagesContainer hidden">
+                    <div ref={imagesContainer} className="imagesContainer">
                         <img 
                             src="https://img.itch.zone/aW1nLzE4NDE5NDg0LnBuZw==/315x250%23c/Y4xZfm.png" 
                             name="Mass Flux: Fuga Espacial" 
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            className="hidden"
                         />
                         <img 
                             src="https://img.itch.zone/aW1nLzE2NDExMDMwLnBuZw==/315x250%23c/Wvoxhq.png" 
@@ -205,6 +206,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            className="hidden"
                         />
                         <img 
                             src="https://img.itch.zone/aW1nLzE1NzgxNjY5LnBuZw==/315x250%23c/7CT8J4.png" 
@@ -212,6 +214,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            className="hidden"
                         />
                         <img 
                             src="https://img.itch.zone/aW1nLzE0MTQwNDU0LmdpZg==/315x250%23cm/%2F2zTyb.gif" 
@@ -219,6 +222,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            className="hidden"
                         />
                         <img 
                             src="https://img.itch.zone/aW1nLzE0MDAyNDIyLnBuZw==/315x250%23c/G5bLt9.png" 
@@ -226,20 +230,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
-                        />
-                        <img 
-                            src="https://img.itch.zone/aW1nLzE3MTA5MTg5LnBuZw==/315x250%23c/rJX3P9.png" 
-                            name="Vigilante Noturno" 
-                            draggable="false"
-                            onMouseEnter={mouseHoverEnter}
-                            onMouseLeave={mouseHoverLeave}
-                        />
-                        <img 
-                            src="https://img.itch.zone/aW1nLzE1NTI3ODEwLnBuZw==/315x250%23c/6EGlge.png" 
-                            name="Quem é?" 
-                            draggable="false"
-                            onMouseEnter={mouseHoverEnter}
-                            onMouseLeave={mouseHoverLeave}
+                            className="hidden"
                         />
                         <img 
                             src="https://img.itch.zone/aW1nLzE3ODk1NDIzLnBuZw==/315x250%23c/4QbRCR.png" 
@@ -247,6 +238,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            className="hidden"
                         />
                         <img 
                             src="https://img.itch.zone/aW1nLzE3ODkzMzYwLmpwZWc=/315x250%23c/xricDe.jpeg" 
@@ -254,6 +246,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            className="hidden"
                         />
                         <img 
                             src="https://img.itch.zone/aW1nLzE2NDA5ODE3LnBuZw==/315x250%23c/HEjACm.png" 
@@ -261,6 +254,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            className="hidden"
                         />
                         <img 
                             src="https://img.itch.zone/aW1nLzE0ODQzOTk5LnBuZw==/315x250%23c/Hokm6K.png" 
@@ -268,6 +262,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            className="hidden"
                         />
                         <img 
                             src="https://img.itch.zone/aW1nLzEzODY2ODkyLmdpZg==/315x250%23cm/9s5x4q.gif" 
@@ -275,6 +270,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            className="hidden"
                         />
                         <img 
                             src="https://img.itch.zone/aW1nLzkyNTEwNzEuanBlZw==/315x250%23c/ExHidf.jpeg" 
@@ -282,6 +278,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            className="hidden"
                         />
                         <img 
                             src="https://img.itch.zone/aW1nLzEzMjQ2Mzg3LmpwZWc=/315x250%23c/5UCtyg.jpeg" 
@@ -289,13 +286,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
-                        />
-                        <img 
-                            src="https://img.itch.zone/aW1nLzEwNzAzNjY1LnBuZw==/315x250%23c/YIzRTz.png" 
-                            name="Bafo Tycoon" 
-                            draggable="false"
-                            onMouseEnter={mouseHoverEnter}
-                            onMouseLeave={mouseHoverLeave}
+                            className="hidden"
                         />
                     </div>
                 </div>
