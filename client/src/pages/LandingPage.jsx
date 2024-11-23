@@ -65,14 +65,9 @@ export default function LandingPage(){
 
         const observer = new IntersectionObserver(elements => {
             elements.forEach(element => {
-                if(element.isIntersecting){
-                    element.target.classList.add("show");
-                    return;
-                }
-
-                element.target.classList.remove("show");
+                element.target.classList.toggle("show", element.isIntersecting);
             })
-        });
+        }, {threshold: 0});
 
         const animatedElements = document.querySelectorAll(".hidden");
         animatedElements.forEach((element) => observer.observe(element));
@@ -130,8 +125,8 @@ export default function LandingPage(){
 
                 <div className="areaRight">
                     <div className="areaText">
-                        <h2>Programação</h2>
-                        <p>A área de Programação trabalha para dar vida aos planos desenvolvidos pelas demais áreas. Sem os programadores o jogo é basicamente uma coleção de ideias inanimadas, por isso os programadores as transformam em um conjunto de dados que por sua vez podem ser interpretados e executados por qualquer tipo maquina moderna, fazendo disso então, um jogo digital / videogame.</p>
+                        <h2 className="hidden">Programação</h2>
+                        <p className="hidden">A área de Programação trabalha para dar vida aos planos desenvolvidos pelas demais áreas. Sem os programadores o jogo é basicamente uma coleção de ideias inanimadas, por isso os programadores as transformam em um conjunto de dados que por sua vez podem ser interpretados e executados por qualquer tipo maquina moderna, fazendo disso então, um jogo digital / videogame.</p>
                     </div>
 
                     <div className="areaImage">
@@ -145,15 +140,15 @@ export default function LandingPage(){
                     </div>
 
                     <div className="areaText">
-                        <h2>Game Desing</h2>
-                        <p>Game Design é a arte de criar uma experiencia! Nosso único trabalho é tornar o game interessante e divertido para o player, utilizando todas as ferramentas possíveis para isso. Aqui nós criamos mecânicas, montamos e apresentamos o pitch dos games, fazemos balanceamento, planejamos como o gameplay vai ser executado e muito mais.</p>
+                        <h2 className="hidden">Game Design</h2>
+                        <p className="hidden">Game Design é a arte de criar uma experiencia! Nosso único trabalho é tornar o game interessante e divertido para o player, utilizando todas as ferramentas possíveis para isso. Aqui nós criamos mecânicas, montamos e apresentamos o pitch dos games, fazemos balanceamento, planejamos como o gameplay vai ser executado e muito mais.</p>
                     </div>
                 </div>
 
                 <div className="areaRight">
                     <div className="areaText">
-                        <h2>Audiovisual</h2>
-                        <p>A área de Audiovisual é responsável por transmitir para o jogador emoções, ideias e informação. Nós procuramos apelar para os sentidos do jogador com imagens, Interfaces de Usuário, sprites, modelos 3D, música, efeitos sonoros e dublagem para transmitir o que o jogo precisa.</p>
+                        <h2 className="hidden">Audiovisual</h2>
+                        <p className="hidden">A área de Audiovisual é responsável por transmitir para o jogador emoções, ideias e informação. Nós procuramos apelar para os sentidos do jogador com imagens, Interfaces de Usuário, sprites, modelos 3D, música, efeitos sonoros e dublagem para transmitir o que o jogo precisa.</p>
                     </div>
 
                     <div className="areaImage">
@@ -167,8 +162,8 @@ export default function LandingPage(){
                     </div>
 
                     <div className="areaText">
-                        <h2>Gestão e Marketing</h2>
-                        <p>Gestão & Marketing é a área responsável por se comunicar com o público do projeto, organizar eventos, firmar parcerias, fazer divulgação e tesouraria. Eles lidam com as questões burocráticas e financeiras do projeto.</p>
+                        <h2 className="hidden">Gestão e Marketing</h2>
+                        <p className="hidden">Gestão & Marketing é a área responsável por se comunicar com o público do projeto, organizar eventos, firmar parcerias, fazer divulgação e tesouraria. Eles lidam com as questões burocráticas e financeiras do projeto.</p>
                     </div>
                 </div>
             </div>

@@ -36,13 +36,13 @@
     .hidden{
         transition: all 1s;
 
-        filter: blur(5px);
         opacity: 0;
         transform: scale(.5);
+        
+        img{opacity: 0;}
     }
 
     .show{
-        filter: blur(0);
         opacity: 1;
         transform: scale(1);
     }
@@ -80,15 +80,13 @@
 
         .hidden{
             transition: all 1s;
-            filter: blur(5px);
-            transform: translateX(-100%);
 
             opacity: 0;
+            transform: translateX(-100%);
         }
 
         .show{
             opacity: 1;
-            filter: blur(0);
             transform: translateX(0%);
         }
     }
@@ -104,15 +102,13 @@
 
         .hidden{
             transition: all 1s;
-            filter: blur(5px);
-            transform: translateX(100%);
 
             opacity: 0;
+            transform: translateX(100%);
         }
 
         .show{
             opacity: 1;
-            filter: blur(0);
             transform: translateX(0%);
         }
     }
@@ -130,8 +126,8 @@
 
         z-index: -1;
 
-        animation: backgroundMovement ease-in-out forwards;
-        animation-timeline: scroll();
+        animation: backgroundMovement 2s linear forwards;
+        animation-timeline: view();
     } 
 }
 
@@ -183,43 +179,35 @@
         }
 
         .areaImage{
+            /*Efeito de animação ao entrar na tela apenas para as imagens*/
             .hidden{
                 transition: all 1s;
-                filter: blur(5px);
+
+                transform: scale(1.5);
     
                 opacity: 0;
             }
     
             .show{
                 opacity: 1;
-                filter: blur(0);
-            }
-
-            img {transition: transform 0.5s ease-in-out;}
-        }
-
-        &:hover .areaText{
-            h2{animation: textFadeInLeft 0.3s ease forwards;}
-
-            p{animation: textFadeInLeft 0.5s ease forwards;}
-        }
-
-        &:hover img{
-            animation: imageFadeInLeft 0.5s ease forwards;
-        }
-
-        &:not(:hover) .areaText{
-            h2{
-                animation: textFadeOutLeft 0.3s ease forwards;
-            }
-
-            p{
-                animation: textFadeOutLeft 0.6s ease forwards;
+                
+                transform: scale(2.0);
             }
         }
 
-        &:not(:hover) img{
-            animation: imageFadeOutLeft 0.5s ease forwards;
+        /*Efeito de animação ao entrar na tela para o parágrafo e para o nome da área*/
+        .hidden{
+            h1{transition: all 2s;}
+
+            p{transition: all 1s;}
+            
+            opacity: 0;
+            transform: translateX(100%);
+        }
+    
+        .show{
+            opacity: 1;
+            transform: translateX(0%);
         }
     }
 
@@ -247,42 +235,37 @@
         }
 
         .areaImage{
+            /*Efeito de animação ao entrar na tela apenas para as imagens*/
             .hidden{
                 transition: all 1s;
-                filter: blur(5px);
+
+                transform: scale(1.5);
     
                 opacity: 0;
             }
     
             .show{
                 opacity: 1;
-                filter: blur(0);
+                
+                transform: scale(2.0);
             }
 
-            img{
-                margin-left: 30%;
-                transition: transform 0.5s ease-in-out;
-            }
+            img{margin-left: 30%;}
         }
 
-        &:hover .areaText{
-            h2{animation: textFadeInRight 0.3s ease forwards;}
+        /*Efeito de animação ao entrar na tela para o parágrafo e para o nome da área*/
+        .hidden{
+            h1{transition: all 2s;}
 
-            p{animation: textFadeInRight 0.5s ease forwards;}
+            p{transition: all 1s;}
+            
+            opacity: 0;
+            transform: translateX(-100%);
         }
-
-        &:hover img{
-            animation: imageFadeInRight 0.5s ease forwards;
-        }
-
-        &:not(:hover) .areaText{
-            h2{animation: textFadeOutRight 0.3s ease forwards;}
-
-            p{animation: textFadeOutRight 0.6s ease forwards;}
-        }
-
-        &:not(:hover) img{
-            animation: imageFadeOutRight 0.5s ease forwards;
+    
+        .show{
+            opacity: 1;
+            transform: translateX(0%);
         }
     }
 
@@ -299,74 +282,21 @@
     .areaImage{
         width: 30%;
  
-        img{
-            width: 70%;
-
-            transform: scale(1.5);
-        }
+        img{width: 70%;}
     }
 
+    /*Efeito de aparecer na tela apenas para o título*/
     .hidden{
         transition: all 1s;
-        filter: blur(5px);
-        transform: translateY(100%);
-
+        
         opacity: 0;
+        transform: translateY(100%);
     }
 
     .show{
         opacity: 1;
-        filter: blur(0);
         transform: translateY(0%);
     }
-}
-
-@keyframes imageFadeInLeft {
-    from {transform: scale(1.5) translate(0%);}
-
-    to {transform: scale(1.8) translate(10%);}
-}
-
-@keyframes imageFadeOutLeft {
-    from {transform: scale(1.8) translate(10%);}
-
-    to {transform: scale(1.5) translate(0%);}
-}
-
-@keyframes imageFadeInRight {
-    from {transform: scale(1.5) translate(0%);}
-
-    to {transform: scale(1.8) translate(-10%);}
-}
-
-@keyframes imageFadeOutRight {
-    from {transform: scale(1.8) translate(-10%);}
-
-    to {transform: scale(1.5) translate(0%);}
-}
-
-@keyframes textFadeInLeft {
-    0% {transform:  translate(110%, 0%);}
-
-    100% {transform:  translate(-5%, 0%);}
-}
-
-@keyframes textFadeOutLeft {
-    0% {transform:  translate(-5%, 0%);}
-
-    100% {transform:  translate(110%, 0%);}
-}
-
-@keyframes textFadeInRight {
-    0% {transform:  translate(-110%, 0%);}
-
-    100% {transform:  translate(5%, 0%);}
-}
-
-@keyframes textFadeOutRight {
-    0% {transform:  translate(5%, 0%);}
-
-    100% {transform:  translate(-110%, 0%);}
 }
 
 .gamesDisplay{
@@ -402,15 +332,13 @@
 
         .hidden{
             transition: all 1s;
-            filter: blur(5px);
-            transform: translateY(100%);
 
             opacity: 0;
+            transform: translateY(100%);
         }
 
         .show{
             opacity: 1;
-            filter: blur(0);
             transform: translateY(0%);
         }
     }
@@ -498,15 +426,11 @@
 
     .hidden{
         transition: all 1s;
-        filter: blur(5px);
 
         opacity: 0;
     }
 
-    .show{
-        opacity: 1;
-        filter: blur(0);
-    }
+    .show{opacity: 1;}
 
     .imageNameText{
         color: white;

@@ -68,8 +68,9 @@
 }
 
 body{
+    background-color: black;
     background-image: url("https://img.freepik.com/free-vector/bring-night-space-wallpaper-with-glowing-starfield_1017-53512.jpg?t=st=1732273616~exp=1732277216~hmac=f489fe2ad94d808a5344a5a7bcc2b1affcec9bf388e9dbbe4a9db73070310b2e&w=1380");
-    background-size: 100vmin 100%;
+    background-size: 100% 100%;
 
     overflow-x: hidden;
 
