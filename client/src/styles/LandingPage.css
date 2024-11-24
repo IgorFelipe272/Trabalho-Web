@@ -15,6 +15,8 @@
 
         position: relative;
         top: -10%;
+
+        z-index: 5;
     }
 
     h1{
@@ -33,21 +35,49 @@
         font-size: 1.5rem;
     }
 
-    .hidden{
-        transition: opacity 1s, transform 1s;
+    color: white;
+
+    /*Animações específicas dos elementos*/
+    /*Da imagem*/
+    img.hidden{
+        transition: all 1s;
 
         opacity: 0;
-        transform: scale(.5);
-        
-        img{opacity: 0;}
+        transform: scale(0.8);
     }
 
-    .show{
+    img.show{
         opacity: 1;
         transform: scale(1);
     }
 
-    color: white;
+    /*Do título*/
+    h1.hidden{
+        transition: all 1s;
+        transition-delay: 0.4s;
+
+        opacity: 0;
+        transform: scale(0.8) translateY(-100%);
+    }
+
+    h1.show{
+        opacity: 1;
+        transform: scale(1) translateY(0%);
+    }
+
+    /*Do subtítulo*/
+    h2.hidden{
+        transition: all 1s;
+        transition-delay: 0.6s;
+
+        opacity: 0;
+        transform: scale(0.8) translateY(-200%);
+    }
+
+    h2.show{
+        opacity: 1;
+        transform: scale(1) translateY(0%);
+    }
 }
 
 .infoText{
@@ -69,6 +99,7 @@
 
     p{font-size: 1.5rem;}
 
+    /*Texto à esquerda*/
     .subContainer1{
         width: 100%;
 
@@ -78,19 +109,40 @@
 
         text-align: right;
 
-        .hidden{
-            transition: opacity 1s, transform 1s;
+        /*Animações específicas dos elementos*/
+        /*Do título*/
+        h2.hidden{
+            transition: all 1s;
 
             opacity: 0;
-            transform: translateX(-100%);
+            transform: translateX(-110%);
+            filter: blur(3px);
         }
 
-        .show{
+        h2.show{
             opacity: 1;
             transform: translateX(0%);
+            filter: blur(0px);
+        }
+
+        /*Do parágrafo*/
+        p.hidden{
+            transition: all 1s;
+            transition-delay: 0.3s;
+
+            opacity: 0;
+            transform: translateX(-110%);
+            filter: blur(3px);
+        }
+
+        p.show{
+            opacity: 1;
+            transform: translateX(0%);
+            filter: blur(0px);
         }
     }
 
+    /*Texto à direita*/
     .subContainer2{
         width: 100%;
 
@@ -100,16 +152,36 @@
 
         text-align: left;
 
-        .hidden{
-            transition: opacity 1s, transform 1s;
+        /*Animações específicas dos elementos*/
+        /*Do título*/
+        h2.hidden{
+            transition: all 1s;
 
             opacity: 0;
-            transform: translateX(100%);
+            transform: translateX(110%);
+            filter: blur(3px);
         }
 
-        .show{
+        h2.show{
             opacity: 1;
             transform: translateX(0%);
+            filter: blur(0px);
+        }
+
+        /*Do parágrafo*/
+        p.hidden{
+            transition: all 1s;
+            transition-delay: 0.3s;
+
+            opacity: 0;
+            transform: translateX(110%);
+            filter: blur(3px);
+        }
+
+        p.show{
+            opacity: 1;
+            transform: translateX(0%);
+            filter: blur(0px);
         }
     }
 
@@ -126,9 +198,9 @@
 
         z-index: -1;
 
-        box-shadow: 0 0 70px rgba(125, 0, 70, 0.5);
+        box-shadow: 0 0 70px rgba(0, 0, 0, 0.5);
 
-        transition: background-position 2s ease-out;
+        
     } 
 }
 
@@ -144,10 +216,23 @@
 
     position: relative;
 
-    h2{
+    .areasTitle{
         text-align: center;
 
         font-size: 3rem;
+    }
+
+    /*Animação específica para o areasTitle*/
+    .areasTitle.hidden{
+        transition: all 1s;
+
+        opacity: 0;
+        transform: translateY(-100%);
+    }   
+
+    .areasTitle.show{
+        opacity: 1;
+        transform: translateY(0%);
     }
 
     .areaLeft{
@@ -173,36 +258,46 @@
             p{margin-left: 4%;}
         }
 
-        .areaImage{
-            /*Efeito de animação ao entrar na tela apenas para as imagens*/
-            .hidden{
-                transition: opacity 1s, transform 1s;
+        /*Animações específicas dos elementos*/
+        /*Do subtítulo*/
+        .areaText.hidden h2{
+            transition: all 1s;
+            transition-delay: 0.2s;
 
-                transform: scale(1.5);
-    
-                opacity: 0;
-            }
-    
-            .show{
-                opacity: 1;
-                
-                transform: scale(2.0);
-            }
-        }
-
-        /*Efeito de animação ao entrar na tela para o parágrafo e para o nome da área*/
-        .hidden{
-            h1{transition: opacity 2s, transform 2s;}
-
-            p{transition: opacity 1s, transform 2s;}
-            
             opacity: 0;
-            transform: translateX(100%);
+            filter: blur(5px);
+            transform: translateX(110%);
         }
-    
-        .show{
+
+        .areaText.show h2{
             opacity: 1;
+            filter: blur(0px);
             transform: translateX(0%);
+        }
+
+        /*Do parágrafo*/
+        .areaText.hidden p{
+            transition: all 1s;
+            transition-delay: 0.3s;
+
+            opacity: 0;
+            filter: blur(5px);
+            transform: translateX(110%);
+        }
+
+        .areaText.show p{
+            opacity: 1;
+            filter: blur(0px);
+            transform: translateX(0%);
+        }   
+
+        /*Da imagem*/
+        .areaImage.hidden{
+            transition: transform 1s;
+        }
+
+        .areaImage.show{
+            transform: scale(2) translateX(17%);;
         }
     }
 
@@ -230,37 +325,49 @@
         }
 
         .areaImage{
-            /*Efeito de animação ao entrar na tela apenas para as imagens*/
-            .hidden{
-                transition: opacity 1s, transform 1s;
-
-                transform: scale(1.5);
-    
-                opacity: 0;
-            }
-    
-            .show{
-                opacity: 1;
-                
-                transform: scale(2.0);
-            }
-
             img{margin-left: 30%;}
         }
 
-        /*Efeito de animação ao entrar na tela para o parágrafo e para o nome da área*/
-        .hidden{
-            h1{transition: opacity 2s, transform 2s;}
+        /*Animações específicas dos elementos*/
+        /*Do subtítulo*/
+        .areaText.hidden h2{
+            transition: all 1s;
+            transition-delay: 0.2s;
 
-            p{transition: opacity 1s, transform 2s;}
-            
             opacity: 0;
-            transform: translateX(-100%);
+            filter: blur(5px);
+            transform: translateX(-110%);
         }
-    
-        .show{
+
+        .areaText.show h2{
             opacity: 1;
+            filter: blur(0px);
             transform: translateX(0%);
+        }
+
+        /*Do parágrafo*/
+        .areaText.hidden p{
+            transition: all 1s;
+            transition-delay: 0.3s;
+
+            opacity: 0;
+            filter: blur(5px);
+            transform: translateX(-110%);
+        }
+
+        .areaText.show p{
+            opacity: 1;
+            filter: blur(0px);
+            transform: translateX(0%);
+        }   
+
+        /*Da imagem*/
+        .areaImage.hidden{
+            transition: transform 1s;
+        }
+
+        .areaImage.show{
+            transform: scale(2) translateX(-17%);;
         }
     }
 
@@ -279,19 +386,6 @@
  
         img{width: 70%;}
     }
-
-    /*Efeito de aparecer na tela apenas para o título*/
-    .hidden{
-        transition: opacity 1s, transform 1s;
-        
-        opacity: 0;
-        transform: translateY(100%);
-    }
-
-    .show{
-        opacity: 1;
-        transform: translateY(0%);
-    }
 }
 
 .gamesDisplay{
@@ -307,7 +401,7 @@
     background-image: url("https://as1.ftcdn.net/v2/jpg/02/93/46/12/1000_F_293461221_GIrnngjdv2S5YOf2HsLcXIuvbWNZXFne.jpg");
     background-size: 160vmin 90vmin;
 
-    box-shadow: 0 0 70px rgba(125, 0, 70, 0.5);
+    box-shadow: 0 0 70px rgba(0, 0, 70, 0.5);
 
     .displayTitle{
         display: flex;
@@ -327,14 +421,30 @@
             font-size: 1.5rem;
         }
 
-        .hidden{
-            transition: opacity 1s, transform 1s;
+        /*Animações específicas dos elementos*/
+        /*Do título**/
+        h2.hidden{
+            transition: all 1s;
 
             opacity: 0;
-            transform: translateY(100%);
+            transform: translateY(-100%);
         }
 
-        .show{
+        h2.show{
+            opacity: 1;
+            transform: translateY(0%);
+        }
+
+        /*Do parágrafo*/
+        p.hidden{
+            transition: all 1s;
+            transition-delay: 0.5s;
+
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+
+        p.show{
             opacity: 1;
             transform: translateY(0%);
         }
@@ -376,29 +486,49 @@
                 border: solid 2px black;
             }
 
-            .hidden{
-                transition: opacity 1s, transform 1s,width 400ms ease-out;
-        
+            /*Animação específica das imagens*/
+            img.hidden{
+                transition: opacity 1s, transform 1s;
+
                 opacity: 0;
-                transform: scale(0.8);
+                transform: scale(0);
             }
-        
-            .show{
+
+            img.show{
+                transition: opacity 0.3s, z-index 0s linear 0.3s, transform 0.2s, width 0.3s;
+
                 opacity: 1;
                 transform: scale(1);
+                z-index: -1;
             }
+
+            img:nth-child(1){transition-delay: 0.8s;}
+            img:nth-child(2){transition-delay: 0.7s;}
+            img:nth-child(3){transition-delay: 0.6s;}
+            img:nth-child(4){transition-delay: 0.5s;}
+            img:nth-child(5){transition-delay: 0.4s;}
+            img:nth-child(6){transition-delay: 0.3s;}
+            img:nth-child(7){transition-delay: 0.4s;}
+            img:nth-child(8){transition-delay: 0.5s;}
+            img:nth-child(9){transition-delay: 0.6s;}
+            img:nth-child(10){transition-delay: 0.7s;}
+            img:nth-child(11){transition-delay: 0.8s;}
         }
         
         .imagesContainer:hover > img{
+            transition-delay: 0s;
+
             opacity: 0.6;
         }
         
         .imagesContainer:hover > img:hover{
+            transition-delay: 0s;
+
             cursor: pointer;
         
             opacity: 1;
-        
-            z-index: 3;
+
+            z-index: 1;
             
             transform: scale(1.3);
         
