@@ -26,7 +26,7 @@ function App() {
     return () => {
         document.body.removeEventListener("pointermove", moveBlob);
     };
-}, []);
+  }, []);
 
   return (
     <>

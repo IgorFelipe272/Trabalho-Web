@@ -18,6 +18,11 @@ export default function LandingPage(){
     let percentage = -50, lastPercentage = -50;
     let mouseDown = false;
 
+    //Referências para a navbar
+    const headerRef = useRef(null);
+    const infoRef = useRef(null);
+    const areasRef = useRef(null);
+
     const [imageName, setImageName] = useState("");
 
     useEffect(() => {
@@ -154,16 +159,36 @@ export default function LandingPage(){
         setImageName("");
     };
 
+    const scrollToSection = (ref) => {
+        const offset = window.innerHeight * 0.1;
+        const elementPos = ref.current.getBoundingClientRect().top;
+        const offsetPos = elementPos + window.scrollY - offset;
+
+        window.scrollTo({
+            top: offsetPos,
+            behavior: "smooth",
+        });
+    };
+
     return(
         <>
-            <div className="header hiddenParent">  
+            <div className="navBar">
+                <h1 onClick={() => scrollToSection(headerRef)}>DEV-U</h1>
+
+                <h2 onClick={() => scrollToSection(infoRef)}>QUEM SOMOS</h2>
+                <h2 onClick={() => scrollToSection(areasRef)}>NOSSAS ÁREAS</h2>
+                <h2 onClick={() => scrollToSection(imagesDisplay)}>NOSSOS JOGOS</h2>
+                <h2>JUNTE-SE A NÓS</h2>
+            </div>
+
+            <div ref={headerRef} className="header hiddenParent">  
                 <img className="hidden" src={mainLogo} alt="mainLogo"/>
                 <h1 className="hidden">DEVELOPS YOU!</h1>
 
                 <h2 className="hidden">Desenvolvimento de Jogos - UNIFEI</h2>
             </div>
 
-            <div className="infoText">
+            <div ref={infoRef} className="infoText">
                 <div className="subContainer1 hiddenParent">
                     <h2 className="hidden">Quem Somos</h2>
                     <p className="hidden">A Dev-U foi criada em 2018 por alunos da UNIFEI pelo interesse comum de desenvolver jogos e evoluir juntos!</p>
@@ -177,7 +202,7 @@ export default function LandingPage(){
                 <div className="infoTextBackground hidden"></div>
             </div>
 
-            <div className="areas">
+            <div ref={areasRef} className="areas">
                 <h2 className="areasTitle hidden">Nossas Áreas</h2>
 
                 <div className="areaRight hiddenParent">
