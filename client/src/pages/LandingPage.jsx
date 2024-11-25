@@ -197,14 +197,17 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            onClick={() => window.open("https://gol-d-roggi.itch.io/mass-flux-fuga-espacial", "_blank")}
                             className="hidden"
                         />
+                        
                         <img 
                             src="https://img.itch.zone/aW1nLzE2NDExMDMwLnBuZw==/315x250%23c/Wvoxhq.png" 
                             name="Embriamago" 
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            onClick={() => window.open("https://joao-mco.itch.io/embriamago", "_blank")}
                             className="hidden"
                         />
                         <img 
@@ -213,6 +216,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            onClick={() => window.open("https://samscuckoo.itch.io/dark-mage", "_blank")}
                             className="hidden"
                         />
                         <img 
@@ -221,6 +225,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            onClick={() => window.open("https://lup38.itch.io/cat-up", "_blank")}
                             className="hidden"
                         />
                         <img 
@@ -229,6 +234,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            onClick={() => window.open("https://vituzel.itch.io/alwayz-up", "_blank")}
                             className="hidden"
                         />
                         <img 
@@ -237,6 +243,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            onClick={() => window.open("https://pedrinluiz.itch.io/the-random-adventure-of-boxbox", "_blank")}
                             className="hidden"
                         />
                         <img 
@@ -245,6 +252,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            onClick={() => window.open("https://pedrinluiz.itch.io/no-one-left-behind", "_blank")}
                             className="hidden"
                         />
                         <img 
@@ -253,6 +261,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            onClick={() => window.open("https://yamizinha.itch.io/punandrun", "_blank")}
                             className="hidden"
                         />
                         <img 
@@ -261,6 +270,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            onClick={() => window.open("https://yamizinha.itch.io/underbrewed", "_blank")}
                             className="hidden"
                         />
                         <img 
@@ -269,6 +279,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            onClick={() => window.open("https://vivinat.itch.io/devmon", "_blank")}
                             className="hidden"
                         />
                         <img 
@@ -277,6 +288,7 @@ export default function LandingPage(){
                             draggable="false"
                             onMouseEnter={mouseHoverEnter}
                             onMouseLeave={mouseHoverLeave}
+                            onClick={() => window.open("https://oronin.itch.io/bagre-in-abyss", "_blank")}
                             className="hidden"
                         />
                     </div>
