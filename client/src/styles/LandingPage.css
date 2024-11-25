@@ -91,7 +91,7 @@
     color: white;
 
     width: 100%;
-    height: 80vh;
+    height: 100vh;
 
     margin-top: 10%;
 
@@ -105,7 +105,7 @@
 
         padding: 5%;
 
-        margin-top: 5%;
+        margin-top: 10%;
 
         text-align: right;
 
@@ -148,7 +148,7 @@
 
         padding: 5%;
 
-        margin-top: 5%;
+        margin-top: 10%;
 
         text-align: left;
 
@@ -191,17 +191,24 @@
         width: 100%;
         height: 100%;
 
-        background-image: url("https://as1.ftcdn.net/v2/jpg/02/93/46/12/1000_F_293461221_GIrnngjdv2S5YOf2HsLcXIuvbWNZXFne.jpg");
+        background-image: url("../assets/Background.jpg");
 
         background-position: 0% 0%;
-        background-size: 160vmin 90vmin;
+        background-size: 100% 100%;
 
         z-index: -1;
 
-        box-shadow: 0 0 70px rgba(0, 0, 0, 0.5);
-
-        
+        box-shadow: 0 0 70px rgba(125, 0, 125, 0.5);        
     } 
+
+    .hidden.infoTextBackground{
+        transition: transform 1s;
+
+        transform: translateX(-100%);
+    }
+    .show.infoTextBackground{
+        transform: translateX(0%);
+    }
 }
 
 .areas{
@@ -212,7 +219,8 @@
 
     width: 100%;
 
-    margin-top: 10%;
+    margin-top: 20%;
+    margin-bottom: 25%;
 
     position: relative;
 
@@ -393,15 +401,8 @@
     flex-direction: column;
     justify-content: center;
 
-    height: 80vh;
+    height: 100vh;
     width: 100%;
-
-    margin-top: 15%;
-    
-    background-image: url("https://as1.ftcdn.net/v2/jpg/02/93/46/12/1000_F_293461221_GIrnngjdv2S5YOf2HsLcXIuvbWNZXFne.jpg");
-    background-size: 160vmin 90vmin;
-
-    box-shadow: 0 0 70px rgba(0, 0, 70, 0.5);
 
     .displayTitle{
         display: flex;
@@ -427,12 +428,12 @@
             transition: all 1s;
 
             opacity: 0;
-            transform: translateY(-100%);
+            transform: translateX(100%);
         }
 
         h2.show{
             opacity: 1;
-            transform: translateY(0%);
+            transform: translateX(0%);
         }
 
         /*Do parágrafo*/
@@ -441,12 +442,12 @@
             transition-delay: 0.5s;
 
             opacity: 0;
-            transform: translateY(-100%);
+            transform: translateX(100%);
         }
 
         p.show{
             opacity: 1;
-            transform: translateY(0%);
+            transform: translateX(0%);
         }
     }
 
@@ -502,17 +503,17 @@
                 z-index: -1;
             }
 
-            img:nth-child(1){transition-delay: 0.8s;}
-            img:nth-child(2){transition-delay: 0.7s;}
-            img:nth-child(3){transition-delay: 0.6s;}
-            img:nth-child(4){transition-delay: 0.5s;}
-            img:nth-child(5){transition-delay: 0.4s;}
-            img:nth-child(6){transition-delay: 0.3s;}
-            img:nth-child(7){transition-delay: 0.4s;}
-            img:nth-child(8){transition-delay: 0.5s;}
-            img:nth-child(9){transition-delay: 0.6s;}
-            img:nth-child(10){transition-delay: 0.7s;}
-            img:nth-child(11){transition-delay: 0.8s;}
+            img:nth-child(1){transition-delay: 2s;}
+            img:nth-child(2){transition-delay: 1.8s;}
+            img:nth-child(3){transition-delay: 1.6s;}
+            img:nth-child(4){transition-delay: 1.4s;}
+            img:nth-child(5){transition-delay: 1.2s;}
+            img:nth-child(6){transition-delay: 1s;}
+            img:nth-child(7){transition-delay: 0.8s;}
+            img:nth-child(8){transition-delay: 0.6s;}
+            img:nth-child(9){transition-delay: 0.4s;}
+            img:nth-child(10){transition-delay: 0.2s;}
+            img:nth-child(11){transition-delay: 0s;}
         }
         
         .imagesContainer:hover > img{
@@ -546,6 +547,31 @@
         width: 100%;
 
         margin-top: 10%;
+    }
+
+    .gamesDisplayBackground{
+        position: absolute;
+
+        width: 100%;
+        height: 100%;
+
+        background-image: url("../assets/Background.jpg");
+
+        background-position: 0% 0%;
+        background-size: 100% 100%;
+
+        z-index: -1;
+
+        box-shadow: 0 0 70px rgba(125, 0, 125, 0.5);       
+    }
+
+    .hidden.gamesDisplayBackground{
+        transition: transform 1s;
+
+        transform: translateX(100%);
+    }
+    .show.gamesDisplayBackground{
+        transform: translateX(0%);
     }
 }
 

@@ -64,9 +64,13 @@ export default function LandingPage(){
             elements.forEach(element => {
                     const children = element.target.children;
 
-                    Array.from(children).forEach((child) => {
-                        child.classList.toggle("show", element.isIntersecting);
-                    });
+                    if(element.isIntersecting){
+                        Array.from(children).forEach((child) => {
+                            child.classList.add("show");
+
+                            observer.unobserve(child);
+                        });
+                    }
             });
         }, {threshold: 0.5, rootMargin: "-100px"});
 
@@ -77,12 +81,47 @@ export default function LandingPage(){
         //Observer para o título da seção das áreas da dev
         const areasTitleObserver = new IntersectionObserver(elements => {
             elements.forEach(element => {
-                element.target.classList.toggle("show", element.isIntersecting);
+                if(element.isIntersecting){
+                    element.target.classList.add("show");
+                    
+                    areasTitleObserver.unobserve(element.target);
+                }
+    
             });
         }, {threshold: 0.5, rootMargin: "-100px"});
 
         const areasTitle = document.querySelector(".areasTitle");
         areasTitleObserver.observe(areasTitle);
+
+        //Observer específico para elementos que não se encaixaram no array acima
+        //Observer para o background do texto sobre nós
+        const infoTextBackgroundObserver = new IntersectionObserver(elements => {
+            elements.forEach(element => {
+                if(element.isIntersecting){
+                    element.target.classList.add("show");
+
+                    infoTextBackgroundObserver.unobserve(element.target);
+                }
+            });
+        }, {threshold: 0});
+
+        const infoTextBackground = document.querySelector(".infoTextBackground");
+        infoTextBackgroundObserver.observe(infoTextBackground);
+
+        //Observer específico para elementos que não se encaixaram no array acima
+        //Observer para o background do display das imagens
+        const gamesDisplayBackgroundObserver = new IntersectionObserver(elements => {
+            elements.forEach(element => {
+                if(element.isIntersecting){
+                    element.target.classList.add("show");
+
+                    gamesDisplayBackgroundObserver.unobserve(element.target);
+                }
+            });
+        }, {threshold: 0});
+
+        const gamesDisplayBackground = document.querySelector(".gamesDisplayBackground");
+        gamesDisplayBackgroundObserver.observe(gamesDisplayBackground);
 
         if(imagesDisplay.current){
             imagesDisplay.current.addEventListener("pointerdown", savePos);
@@ -98,6 +137,10 @@ export default function LandingPage(){
             animatedElements.forEach((element) => observer.unobserve(element));
 
             areasTitleObserver.unobserve(areasTitle);
+
+            infoTextBackgroundObserver.unobserve(infoTextBackground);
+
+            gamesDisplayBackgroundObserver.unobserve(gamesDisplayBackground);
         };
     }, []);
 
@@ -131,7 +174,7 @@ export default function LandingPage(){
                     <p className="hidden">Nossa missão conta com o desenvolvimento de jogos, participação em Game Jams, desenvolvimento e pesquisas direcionadas para jogos educativos, e também com a capacitação dos membros para o crescente mercado de jogos no Brasil!</p>
                 </div>
 
-                <div className="infoTextBackground"></div>
+                <div className="infoTextBackground hidden"></div>
             </div>
 
             <div className="areas">
@@ -297,6 +340,8 @@ export default function LandingPage(){
                 <div className="imageNameText">
                     <h3>{imageName}</h3>
                 </div>
+
+                <div className="gamesDisplayBackground hidden"></div>
             </div>            
         </>
     )
