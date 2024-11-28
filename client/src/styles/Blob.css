@@ -1,0 +1,46 @@
+.bodyContainer{
+    position: fixed;
+    z-index: -3;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+.backgroundBlob{
+    background-color: white;
+    height: 500px;
+    aspect-ratio: 1;
+
+    position: absolute;
+    z-index: -3;
+
+    width: 25rem;
+    height: 25rem;
+
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    border-radius: 50%;
+
+    filter: blur(200px);
+
+    background: linear-gradient(
+        to right,
+        aquamarine,
+        purple
+    );
+
+    animation: rotate 30s infinite linear;
+}
+
+.blur{
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    z-index: -2;
+
+    backdrop-filter: blur(12px);
+}
