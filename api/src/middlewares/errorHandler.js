@@ -8,6 +8,7 @@ const NotFoundError = require("../../errors/NotFoundError");
 const PermissionError = require("../../errors/PermissionError");
 
 const statusCodes = require("../../utils/constants/statusCodes");
+const { JsonWebTokenError } = require("jsonwebtoken");
 
 function errorHandler(error, req, res, next){
     let message = error.message;
@@ -24,6 +25,11 @@ function errorHandler(error, req, res, next){
 
     else if(error instanceof QueryError)
         status = statusCodes.BAD_REQUEST;
+
+    else if(error instanceof JsonWebTokenError){
+        status = statusCodes.FORBIDDEN;
+        message = "Sessão expirada. Favor fazer o login novamente."
+    }
 
     //envia a resposta ao front
     //mensagem em json proque fica mais bonitinho

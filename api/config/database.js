@@ -17,6 +17,5 @@ const sequelize = new Sequelize(
     }
 );
 
-
 //Exporta a referência à conexão com o banco de dados
 module.exports = sequelize;
