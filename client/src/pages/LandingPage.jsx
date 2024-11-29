@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import "../styles/LandingPage.css";
 
+import { useNavigate } from "react-router-dom";
+
 //logos
 import mainLogo from "../assets/logos/MAIN.png";
 import GDLogo from "../assets/logos/GD.png";
@@ -22,6 +24,13 @@ export default function LandingPage(){
     const headerRef = useRef(null);
     const infoRef = useRef(null);
     const areasRef = useRef(null);
+
+    const navigate = useNavigate();
+
+    const handleRedirect = (endpoint) => {
+        navigate(endpoint); 
+        window.location.reload(); // Tem que recarregar a página não sei pq, se não a login page não aparece
+    }
 
     const [imageName, setImageName] = useState("");
 
@@ -174,13 +183,11 @@ export default function LandingPage(){
         <>
             <div className="navBar">
                 <h1 onClick={() => scrollToSection(headerRef)}>DEV-U</h1>
-
                 <h2 onClick={() => scrollToSection(infoRef)}>QUEM SOMOS</h2>
                 <h2 onClick={() => scrollToSection(areasRef)}>NOSSAS ÁREAS</h2>
                 <h2 onClick={() => scrollToSection(imagesDisplay)}>NOSSOS JOGOS</h2>
-                <h2>JUNTE-SE A NÓS</h2>
+                <h2 onClick={() => {handleRedirect('login')}}>JUNTE-SE A NÓS</h2>
             </div>
-
             <div ref={headerRef} className="header hiddenParent">  
                 <img className="hidden" src={mainLogo} alt="mainLogo"/>
                 <h1 className="hidden">DEVELOPS YOU!</h1>

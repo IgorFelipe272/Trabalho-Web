@@ -1,0 +1,21 @@
+.footer{
+    color: white;
+
+    display: flex;
+    flex-direction: row;
+
+    background-color: black;
+
+    h2{font-size: 2rem;}
+    p{font-size: 1.5rem;}
+
+    text-align: center;
+
+    .subContainer1{
+        width: 100%;
+    }
+
+    .subContainer2{
+        width: 100%;
+    }
+}

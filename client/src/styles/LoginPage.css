@@ -1,38 +1,229 @@
-.loginContainer{
-    border: solid white 5px;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.loginBody {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    background-color: black;
+
+    width: 100vw;
+    height: 100vh;
 
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    width: 50%;
-    height: 50%;
-    margin: 10% 25%;
-    
-    position: absolute;
-    z-index: 1;
-    
-    border-radius: 20px;
-
-    .formLogin{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        
-        margin-top: 2%;
-
-        input{  
-            width: 30%;
-            margin-top: 2%;
-        }
-    }
-
-    button{
-        margin-top: 2%;
-        border-radius: 8px;
-    }
-
-    button:hover{
-        cursor: pointer;
+    button, input{
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 }
 
+.loginContainer{
+
+    background-color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 37vw;
+    height: 24vw;
+
+    border-radius: 1.5rem;
+}
+
+.mainWelcomeDiv{
+
+    background-color: rgb(46, 7, 63);
+    border-start-start-radius: 1.5rem;
+    border-start-end-radius: 6rem;
+    border-end-start-radius: 1.5rem;
+    border-end-end-radius: 6rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    height: 100%;
+    width: 50%;
+
+    position: relative;
+
+    img{
+        width: 70%;
+
+        top: 10%;
+        position: absolute;
+    }
+
+    h1{
+        margin-bottom: 2%;
+
+        color: white;
+    }
+
+    p{
+        margin-bottom: 5%;
+
+        color: white;
+    }
+
+    button{
+        font-size: 1rem;
+        font-weight: 600;
+
+        height: 8%;
+        width: 40%;
+
+        border: solid white 1px;
+        border-radius: 0.5rem;
+
+        color: white;
+        background-color: rgb(46, 7, 63);
+
+        cursor: pointer;
+
+        --glow-color: rgba(255, 255, 255, 0.212);
+    }
+
+    button:hover {
+        animation: expand-glow 0.6s forwards, pulse 2s infinite;
+    }
+
+}
+
+.mainLoginDiv{
+
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 100%;
+    width: 45%;
+    
+    padding-right: 3%;
+
+    h1{
+        text-align: center;
+        color: rgb(26, 26, 29);
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+        height: 50%;
+
+    }
+
+    .emailSection, .passwordSection{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 30%;
+        width: 100%;
+
+        position: relative;
+        top:-8%;
+
+        input{
+            height: 50%;
+            width: 90%;
+
+            font-size: 0.9rem;
+            font-weight: 600;
+
+            border: transparent;
+            border-radius: 0.5rem;
+
+            outline: none;
+
+            background-color: rgba(209, 209, 209, 0.473);
+
+            padding-left: 4%;
+
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        box-icon{
+            position: absolute;
+            right: 8%;
+
+            color: rgb(235, 211, 248);
+        }
+
+        #lockIcon{
+            cursor: pointer;
+        }
+    }
+
+     .passwordSection{
+        transform: translateY(-8%);
+    } 
+
+    button{
+        font-size: 1.2rem;
+        font-weight: 600;
+
+        width: 90%;
+        height: 17%;
+
+        border: none;
+        border-radius: 0.5rem;
+
+        background-color: rgb(46, 7, 63);
+
+        color: white;
+
+        cursor: pointer;
+
+        transition: transform 0.4s ease-out, box-shadow 0.3s ease-in-out;
+    }
+
+    button:hover {
+        animation: expand-glow 0.6s forwards, pulse 2s infinite;
+    }
+
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-webkit-credentials-auto-fill-button {
+display: none;
+}
+
+:root {
+    --glow-color: rgba(172, 73, 225, 0.493); 
+}
+
+@keyframes expand-glow {
+    0% {
+        transform: translateY(0); 
+        scale: 1;
+        box-shadow: 0 0 6px var(--glow-color), 0 0 12px var(--glow-color); 
+    }
+    100% {
+        transform: scale(1.1); 
+        box-shadow: 0 0 15px var(--glow-color), 0 0 25px rgvar(--glow-color); 
+    }
+}
+
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 6px var(--glow-color), 0 0 12px var(--glow-color); 
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(172, 73, 225, 0.4), 0 0 25px var(--glow-color); 
+    }
+    100% {
+        box-shadow: 0 0 6px var(--glow-color), 0 0 12px rgba(172, 73, 225, 0.2); 
+    }
+}
