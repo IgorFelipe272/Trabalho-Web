@@ -1,22 +1,28 @@
-//Arquivo para configurar o sequelize, biblioteca utilizada para gerenciar o banco de dados com javascript
-const Sequelize = require("sequelize");
+const fs = require('fs').promises;
+const path = require('path');
 
-//Dotenv é uma biblioteca que permite usar o .env, arquivo que mantém variáveis que o código usa e que não são enviadas ao github
-require("dotenv").config();
+async function getDB(file){
 
-//Inicia o sequelize e o conecta ao banco de dados com as variáveis de ambiente
-const sequelize = new Sequelize(
-    process.env.DB,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
-    
-    {
-        host: process.env.DB_HOST,
-        //Usa o dialeto mysl
-        dialect: "mysql",
+    const dbPath = path.join(process.cwd(), 'db', file);
+    const data = await fs.readFile(dbPath, 'utf-8');
+
+    if (!data) {
+        return []; 
     }
-);
+    
+    return JSON.parse(data);
+}
 
+async function storeDB(file, data){
 
-//Exporta a referência à conexão com o banco de dados
-module.exports = sequelize;
+    const dbPath = path.join(process.cwd(), 'db', file);
+    await fs.writeFile(dbPath, JSON.stringify(data,null,2));
+
+}
+
+const DBConnection = {
+    getDB,
+    storeDB
+}
+
+module.exports = DBConnection;

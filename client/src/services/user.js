@@ -4,6 +4,7 @@ import api from "./api";
 //Conecta o front com a rota de login la no back
 async function login(email, password){
     const response = await api.post("/User/login", {email, password});
+    console.log(response);
     return response;
 }
 

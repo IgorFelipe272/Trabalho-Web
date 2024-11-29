@@ -1,0 +1,18 @@
+[
+  {
+    "id": "da5de62d-9286-4e4a-9414-c14b9cdd2989",
+    "name": "John Doe",
+    "nickname": "johndoe",
+    "email": "johndoe@example.com",
+    "password": "$2b$10$XIr7d2yCV.TkHQWawa6g1ef4Fak1xuFIkQqdyQlTKqAlfxsgYuqMe",
+    "role": "administrator"
+  },
+  {
+    "id": "037b9081-40d6-4f1b-bbef-4f7334cbcfeb",
+    "name": "TESTANDO",
+    "nickname": "teste",
+    "email": "teste@teste.com",
+    "password": "$2b$10$Mjbmj4CtoXBFqijbeXkcY.6tX9PBlg3k7m9hjl5UIwlhYMNL15a.G",
+    "role": "user"
+  }
+]

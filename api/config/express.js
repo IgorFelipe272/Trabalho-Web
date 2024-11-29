@@ -22,11 +22,15 @@ app.use(express.json());
 const userRouter = require("../src/domains/User/index");
 app.use("/User", userRouter);
 
+
+
 //Importa o middleware para tratamento de erros
 //faz o uso do middleware ao fim do arquivo (tem que ser após todas as outras rotas) para que o erro seja tratado após a execução das rotas
 //Middlewares são funções que são executtadas em ordem durante uma requisição
 const errorHandler = require("../src/middlewares/errorHandler");
 app.use(errorHandler);
+
+
 
 //Exporta a referência à aplicação
 module.exports = app;

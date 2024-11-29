@@ -18,7 +18,6 @@ const userRoles = require("../../../utils/constants/userRoles");
 Router.post("/login", notLoggedIn, async(req, res, next) => {
     try{ 
         const body = req.body;
-        
         //Chama o services para processar os dados recebidos da requisição
         const token = await UserServices.login(body);
 
