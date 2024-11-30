@@ -95,7 +95,7 @@ body{
     top: 0; /* Alinha no topo */
     left: 0; /* Alinha à esquerda */
     width: 100%; /* Faz o header ocupar toda a largura */
-    background-color: #222; /* Cor de fundo */
+    background-color: #000000; /* Cor de fundo */
     padding: 1rem; /* Espaçamento interno */
     display: flex; /* Define como flexbox */
     justify-content: space-around; /* Espaça igualmente os botões */
@@ -123,5 +123,7 @@ body{
     padding-top: 4rem; /* Espaço igual à altura do header */
   }
   
-  
+  .button{
+    border: none;
+  }
   

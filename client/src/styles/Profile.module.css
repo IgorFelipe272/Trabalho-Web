@@ -1,0 +1,48 @@
+.profileContainer {
+    text-align: center;
+    margin: 0;
+    padding-top: 5%;
+  }
+  
+  .profileContainer img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .noPhoto {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: gray;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 10px auto;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  ul li {
+    background: #f0f0f0;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  p,h2,a{
+    color: white;
+  }
+
+  
+
+  .medalList {
+    display: flex;
+    gap: 10px; /* Espaçamento entre as medalhas */
+  }
+  

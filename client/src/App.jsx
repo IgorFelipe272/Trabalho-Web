@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import LandingPage from "./pages/LandingPage";
 import Cadastro from "./pages/Cadastro";
 import MembrosPontuacao from './pages/MembrosPontuacao';
+import Profile from './pages/Profile.module'; // Importa o novo componente
 
 function App() {
   const blobRef = useRef(null);
@@ -36,9 +37,11 @@ function App() {
       case "home":
         return <LandingPage />;
       case "cadastro":
-        return <Cadastro />;
+        return <LoginPage />;
       case "pontuacao":
         return <MembrosPontuacao />;
+      case "profile": // Adicionado o caso para o profile
+        return <Profile />;
       default:
         return <LandingPage />;
     }
@@ -56,6 +59,7 @@ function App() {
         <button onClick={() => setCurrentPage("home")}>Home</button>
         <button onClick={() => setCurrentPage("cadastro")}>Cadastro</button>
         <button onClick={() => setCurrentPage("pontuacao")}>Pontuação</button>
+        <button onClick={() => setCurrentPage("profile")}>Profile</button> {/* Novo botão */}
       </header>
 
       {/* Render the selected page */}
