@@ -17,7 +17,6 @@ export default function LoginContainer(){
     const [showPassword, setShowPassword] = useState(false);
     const [fadeUp, setFadeUp] = useState(false);
 
-
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -34,19 +33,16 @@ export default function LoginContainer(){
     const submitLogin = async (event) => {
         event.preventDefault();
         try {
-            await login(email, password)
-            navigate('/'); 
-            await logout(email, password); //deslogando em seguida apenas para testar, pq se não o cookie fica armazenado e não da pra logar denovo depois com outro usuário
+            const response = await login(email, password);
+            
+            sessionStorage.setItem('userId', response.data.userId); // Modifiquei um pouco a resposta do login para enviar o id do usuário, pq não achei outro jeito de pegar as informações do usuário depois de logar
+
+            navigate('/user'); 
+            // await logout(email, password); //deslogando em seguida apenas para testar, pq se não o cookie fica armazenado e não da pra logar denovo depois com outro usuário
         }
         catch(error){
             if(error.response)
                 toast.error(error.response.data);
-        }
-    };
-
-    const handleCreateRedirect = () => {
-        if(!token){
-            // navigate('/');
         }
     };
 
@@ -57,7 +53,7 @@ export default function LoginContainer(){
                     <img src={MAINLOGO} className="logo"></img>
                     <h1>Olá, bem vindo!</h1>
                     <p>Não tem conta?</p>
-                    <button onClick={handleCreateRedirect}>Registrar</button>
+                    <button>Registrar</button>
                 </div>
                 <div className="mainLoginDiv">
                     <h1>Login</h1>

@@ -4,14 +4,33 @@ import api from "./api";
 //Conecta o front com a rota de login la no back
 async function login(email, password){
     const response = await api.post("/User/login", {email, password});
-    console.log(response);
     return response;
 }
 
 //Conecta o front com a rota de logout la no back
 async function logout(){
-    const response = await api.post("User/logout");
+    const response = await api.post("/User/logout");
     return response;
 }
 
-export {login, logout};
+
+async function getUser(userId){
+    const response = await api.get(`/User/${userId}`);
+    
+    return response;
+}
+
+async function isMatch(password, userId){
+    const response = await api.post(`/User/match`, {password, userId});
+    
+    return response;
+}
+
+async function update(userData){
+    console.log(userData);
+    const response = await api.put(`/User/${userData.id}`, userData)
+    
+    return response;
+}
+
+export {login, logout, getUser, isMatch, update};

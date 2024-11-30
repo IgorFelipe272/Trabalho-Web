@@ -31,6 +31,7 @@ class UserServices{
             throw new PermissionError("Email ou senha inválidos");
 
         const token = jwt.sign({id: user.id, name: user.name, email: user.email, role: user.role}, process.env.JWT_KEY, {expiresIn: process.env.JWT_EXPIRATION});
+        
         return token;
     }
 
@@ -68,6 +69,10 @@ class UserServices{
         
         const user =  await this.getById(userId);
         
+        //Se tiver a senha, encrypta ela pra atrualizar
+        if(body.hasOwnProperty('password')){
+            body.password = await encryptPassword(body.password);
+        }
         //Atualiza o valor de cada atributo do elemento de acordo com os atributos no body
         //Se no body só tiver dois atributos (nome, email), por exemplo, então somente esses valores serão atualizados
         for(let attribute in body){
@@ -77,7 +82,6 @@ class UserServices{
         
         const userIndex = usersDB.findIndex(u => u.id === userId);
         usersDB[userIndex] = user; 
-
 
         await DBConnection.storeDB(file, usersDB);
     }
@@ -109,6 +113,18 @@ class UserServices{
             throw new NotFoundError("Nenhum usuário cadastrado");
 
         return users;
+    }
+
+    async match(password, userId){
+        const user = await this.getById(userId);
+        
+        const matchingPassword = await bcrypt.compare(password, user.password);
+        
+        if(!matchingPassword){
+            throw new PermissionError("Senha incorreta");
+        }
+            
+        return true;
     }
 }
 

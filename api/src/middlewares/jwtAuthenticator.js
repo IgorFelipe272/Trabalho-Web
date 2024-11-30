@@ -9,15 +9,16 @@ const PermissionError = require("../../errors/PermissionError");
 function jwtAuthenticator(req, res, next){
     try{
         //Acessa o token armazenado nos cookies do usuário
+        
         const token = req.cookies["jwt"];
-
+        
         //Se o token não existe então ninguém está logado
         if(!token)
             throw new PermissionError("É necessário logar primeiro");
 
         //Verifica o token e armazena as informações do usuário
         const user = jwt.verify(token, process.env.JWT_KEY);
-
+        
         req.user = user;
 
         next();

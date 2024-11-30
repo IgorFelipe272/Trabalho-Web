@@ -11,6 +11,7 @@ const {jwtAuthenticator, notLoggedIn} = require("../../middlewares/jwtAuthentica
 const roleAuthenticator = require("../../middlewares/roleAuthenticator");
 const userRoles = require("../../../utils/constants/userRoles");
 
+const jwt = require('jsonwebtoken');
 
 //Rota post para logar
 //Utiliza o middleware notLoggedIn para checar se já há um usuário logado na sessão
@@ -20,14 +21,18 @@ Router.post("/login", notLoggedIn, async(req, res, next) => {
         const body = req.body;
         //Chama o services para processar os dados recebidos da requisição
         const token = await UserServices.login(body);
-
+        
+        const decoded = jwt.decode(token);
+        
+        const userId = decoded.id;
+        
         res.cookie("jwt", token, {
             httpOnly: true,
             sameSite: "strict",
             maxAge: 24 * 60 * 60 * 1000
         });
         
-        res.status(statusCodes.SUCCESS).send("Login realizado com sucesso")
+        res.status(statusCodes.SUCCESS).send({message:"Login realizado com sucesso", userId: userId})
     }catch(error){
         next(error);
     }
@@ -72,9 +77,8 @@ Router.post("/", notLoggedIn, async(req, res, next) => {
 Router.put("/:userId", jwtAuthenticator, async(req, res, next) => {
     try{ 
         const userId = req.params.userId;
-
         const body = req.body;
-
+        
         //Chama o services para processar os dados recebidos da requisição
         await UserServices.update(userId, body);
 
@@ -122,6 +126,19 @@ Router.get("/", jwtAuthenticator, roleAuthenticator([userRoles.ADMINISTRATOR, us
 
         res.status(statusCodes.ACCEPTED).send(users);
     }catch(error){
+        next(error);
+    }
+});
+
+Router.post("/match",jwtAuthenticator, async(req,res,next) => {
+    try{
+        const {password, userId} = req.body;
+
+        const response = await UserServices.match(password, userId);
+        
+        res.status(statusCodes.ACCEPTED).send(response);
+    }
+    catch(error){
         next(error);
     }
 });
