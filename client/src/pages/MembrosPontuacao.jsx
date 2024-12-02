@@ -14,7 +14,7 @@ import { Line, Bar } from "react-chartjs-2";
 
 import "../styles/MembrosPontuacao.css";
 
-// Registrar os elementos necessários para gráficos de linhas e barras
+// Registrar os elementos necessários para gráficos de linhas e barras, a extensao pede q façamos isso 
 ChartJS.register(LineElement, BarElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
 
 export default function MembrosPontuacao() {
@@ -32,26 +32,26 @@ export default function MembrosPontuacao() {
         const result = await response.json();
   
         // Verifique a resposta da API
-        console.log("Dados recebidos da API:", result);
+        //console.log("Dados recebidos da API:", result);
   
         // Continuar o processamento dos dados
         const labels = result.map((item) => item.nome);
         const scores = result.map((item) => item.pontuacao);
   
-        // Definir as cores das barras com base na área (mas não afeta a linha)
+        // Definir as cores das barras com base na área
         const colors = result.map((item) => {
           const area = item.area; 
-          console.log(`Área detectada para ${item.nome}: ${area}`); // Verifique a área de cada item
+          //console.log(`Área detectada para ${item.nome}: ${area}`); // Verifique a área de cada item
   
           switch (area) {
             case "AV":
               return "rgba(255, 99, 132, 0.8)"; // Cor para AV
             case "GD":
-              return "rgba(255, 206, 86, 0.8)"; // Cor para Desenvolvimento
+              return "rgba(255, 206, 86, 0.8)"; // Cor para game design
             case "GM":
-              return "rgba(54, 162, 235, 0.8)"; // Cor para Design
+              return "rgba(54, 162, 235, 0.8)"; // Cor para gestao e Marketing
             case "PROG":
-              return "rgba(148, 0, 211, 0.8)"; // Cor para Marketing
+              return "rgba(148, 0, 211, 0.8)"; // Cor para programação
             default:
               return "rgba(153, 102, 255, 0.8)"; // Cor padrão
           }
@@ -100,7 +100,7 @@ export default function MembrosPontuacao() {
   return (
     <div className="membro">
       <h1>Gráfico de Pontuação</h1>
-      <button onClick={toggleChartType} style={{ marginBottom: "20px" }}>
+      <button onClick={toggleChartType}>
         Alternar para {chartType === "line" ? "Gráfico de Barras" : "Gráfico de Linhas"}
       </button>
       {chartType === "line" ? (

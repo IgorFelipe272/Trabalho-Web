@@ -37,7 +37,7 @@ function App() {
       case "home":
         return <LandingPage />;
       case "cadastro":
-        return <LoginPage />;
+        return <Cadastro />;
       case "pontuacao":
         return <MembrosPontuacao />;
       case "profile": // Adicionado o caso para o profile

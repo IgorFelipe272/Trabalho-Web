@@ -3,15 +3,11 @@ import "../styles/Cadastro.css";
 
 export default function Cadastro() {
     const [formData, setFormData] = useState({
-        //realPhoto: null,
-        profilePhoto: null,
-        area: "",
+        nome: "",
+        email: "",
+        senha: "",
+        confirmaSenha: "",
         github: "",
-        itchIo: "",
-        discord: "",
-        instagram: "",
-        birthday: "",
-        shirtSize: "",
     });
 
     const [message, setMessage] = useState("");
@@ -22,37 +18,23 @@ export default function Cadastro() {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleFileChange = (event) => {
-        const { name, files } = event.target;
-        setFormData({ ...formData, [name]: files[0] });
-    };
-
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const {
-            //realPhoto,
-            profilePhoto,
-            area,
-            github,
-            itchIo,
-            discord,
-            instagram,
-            birthday,
-            shirtSize,
-        } = formData;
+        const { nome, email, senha, confirmaSenha, github } = formData;
 
         // Verificar campos obrigatórios
         const missing = [];
-        //if (!realPhoto) missing.push("realPhoto");
-        if (!profilePhoto) missing.push("profilePhoto");
-        if (!area) missing.push("area");
+        if (!nome) missing.push("nome");
+        if (!email) missing.push("email");
+        if (!senha) missing.push("senha");
+        if (!confirmaSenha) missing.push("confirmaSenha");
         if (!github) missing.push("github");
-        if (!itchIo) missing.push("itchIo");
-        if (!discord) missing.push("discord");
-        if (!instagram) missing.push("instagram");
-        if (!birthday) missing.push("birthday");
-        if (!shirtSize) missing.push("shirtSize");
+
+        if (senha !== confirmaSenha) {
+            setMessage("As senhas não coincidem. Por favor, verifique.");
+            return;
+        }
 
         setMissingFields(missing);
 
@@ -76,48 +58,50 @@ export default function Cadastro() {
         );
     };
 
-    /*
-
-{renderLabel("realPhoto", "Foto Real do Membro")}
-                <input
-                    type="file"
-                    id="realPhoto"
-                    name="realPhoto"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                />
-
-    */
     return (
         <div className="signup-container">
             <h1>Cadastro de Membro</h1>
 
             <form className="signup-form" onSubmit={handleSubmit}>
-                
-
-                {renderLabel("profilePhoto", "Foto de Perfil")}
+                {renderLabel("nome", "Nome")}
                 <input
-                    type="file"
-                    id="profilePhoto"
-                    name="profilePhoto"
-                    accept="image/*"
-                    onChange={handleFileChange}
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    value={formData.nome}
+                    onChange={handleInputChange}
+                    placeholder="Digite seu nome"
                 />
 
-                {renderLabel("area", "Área")}
-                <select
-                    id="area"
-                    name="area"
-                    value={formData.area}
+                {renderLabel("email", "Email")}
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
                     onChange={handleInputChange}
-                >
-                    <option value="">Selecione uma área</option>
-                    <option value="GD">Game Design (GD)</option>
-                    <option value="Prog">Programação (Prog)</option>
-                    <option value="G">Gestão (G)</option>
-                    <option value="M">Marketing (M)</option>
-                    <option value="AV">Áudio Visual (AV)</option>
-                </select>
+                    placeholder="Digite seu email"
+                />
+
+                {renderLabel("senha", "Senha")}
+                <input
+                    type="password"
+                    id="senha"
+                    name="senha"
+                    value={formData.senha}
+                    onChange={handleInputChange}
+                    placeholder="Digite sua senha"
+                />
+
+                {renderLabel("confirmaSenha", "Confirmação de Senha")}
+                <input
+                    type="password"
+                    id="confirmaSenha"
+                    name="confirmaSenha"
+                    value={formData.confirmaSenha}
+                    onChange={handleInputChange}
+                    placeholder="Confirme sua senha"
+                />
 
                 {renderLabel("github", "GitHub")}
                 <input
@@ -128,61 +112,6 @@ export default function Cadastro() {
                     onChange={handleInputChange}
                     placeholder="https://github.com/usuario"
                 />
-
-                {renderLabel("itchIo", "Itch.io")}
-                <input
-                    type="url"
-                    id="itchIo"
-                    name="itchIo"
-                    value={formData.itchIo}
-                    onChange={handleInputChange}
-                    placeholder="https://usuario.itch.io"
-                />
-
-                {renderLabel("discord", "Discord")}
-                <input
-                    type="text"
-                    id="discord"
-                    name="discord"
-                    value={formData.discord}
-                    onChange={handleInputChange}
-                    placeholder="Usuario#1234"
-                />
-
-                {renderLabel("instagram", "Instagram")}
-                <input
-                    type="text"
-                    id="instagram"
-                    name="instagram"
-                    value={formData.instagram}
-                    onChange={handleInputChange}
-                    placeholder="@usuario"
-                />
-
-                {renderLabel("birthday", "Aniversário")}
-                <input
-                    type="date"
-                    id="birthday"
-                    name="birthday"
-                    value={formData.birthday}
-                    onChange={handleInputChange}
-                />
-
-                {renderLabel("shirtSize", "Tamanho da Camiseta")}
-                <select
-                    id="shirtSize"
-                    name="shirtSize"
-                    value={formData.shirtSize}
-                    onChange={handleInputChange}
-                >
-                    <option value="">Selecione um tamanho</option>
-                    <option value="PP">PP</option>
-                    <option value="P">P</option>
-                    <option value="M">M</option>
-                    <option value="G">G</option>
-                    <option value="GG">GG</option>
-                    <option value="XG">XG</option>
-                </select>
 
                 <button type="submit">Cadastrar</button>
             </form>
