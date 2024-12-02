@@ -10,7 +10,6 @@ const jwt = require("jsonwebtoken");
 const DuplicateError = require("../../../errors/DuplicateError");
 const NotFoundError = require("../../../errors/NotFoundError");
 const PermissionError = require("../../../errors/PermissionError");
-const QueryError = require("../../../errors/QueryError");
 
 //Cria uma class para o services deste domínio
 class UserServices{
@@ -56,11 +55,15 @@ class UserServices{
 
     async update(userId, body){
         const user = await this.getById(userId);
+
+        if(body.hasOwnProperty("password"))
+            body.password = await encryptPassword(body.password);
         
         //Atualiza o valor de cada atributo do elemento de acordo com os atributos no body
         //Se no body só tiver dois atributos (nome, email), por exemplo, então somente esses valores serão atualizados
         for(let attribute in body){
-            user[attribute] = body[attribute];
+            if(body.hasOwnProperty(attribute))
+                user[attribute] = body[attribute];
         }
 
         //Usa a função save do sequelize para salvar os valores desse elemento no banco de dados

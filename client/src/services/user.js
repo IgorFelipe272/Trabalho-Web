@@ -13,4 +13,14 @@ async function logout(){
     return response;
 }
 
-export {login, logout};
+async function get(userId){
+    const response = await api.get(`User/${userId}`);
+    return response; 
+}
+
+async function update(userData){
+    const response = await api.put(`User/${userData.id}`, userData);
+    return response;
+}
+
+export {login, logout, get, update};

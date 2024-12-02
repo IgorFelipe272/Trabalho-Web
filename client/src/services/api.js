@@ -20,7 +20,7 @@ api.interceptors.response.use(
     //Se o token expirar o usuário terá que logar novamente (ex: quando a sessão expira no sigaa)
     (error) => {
         if(error?.response?.status === 403 && window.location.pathname !== "/loginPage"){
-            window.location.pathname = "/loginPage";
+            window.location.pathname = "/login";
             alert("Sessão Expirada. Faça login novamente");
         }
 

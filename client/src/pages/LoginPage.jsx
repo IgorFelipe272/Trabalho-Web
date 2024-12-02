@@ -3,9 +3,11 @@ import { login, logout } from "../services/user";
 
 import { useNavigate } from 'react-router-dom'
 
+import { ToastContainer, toast} from 'react-toastify';
 import 'boxicons'
 
 import "../styles/LoginPage.css"
+import "react-toastify/dist/ReactToastify.css";
 import MAINLOGO from "../assets/logos/MAIN.png"
 
 export default function LoginContainer(){
@@ -13,8 +15,16 @@ export default function LoginContainer(){
     const [password, setPassword] = useState("");
 
     const[showPassword, setShowPassword] = useState(false);
+    const [fadeUp, setFadeUp] = useState(false);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const timer = setTimeout( () => {
+            setFadeUp(true);
+        },100);
+        return () => clearTimeout(timer);
+    }, []);
 
     const togglePassword = () => {
         setShowPassword(!showPassword);
@@ -23,17 +33,21 @@ export default function LoginContainer(){
     const submitLogin = async (event) => {
         event.preventDefault();
         try {
-            await login(email, password);
-            navigate('/'); 
+            const response = await login(email, password);
+
+            sessionStorage.setItem('userId', response.data.userId);
+
+            navigate('/user'); 
         }
         catch(error){
+            if(error.response)
+                toast.error(error.response.data);
         }
-
     };
 
     return(
         <div className="loginBody"> 
-            <div className="loginContainer">
+            <div className={`loginContainer ${fadeUp ? "fade-up" : ""}`}>
                 <div className="mainWelcomeDiv">
                     <img src={MAINLOGO} className="logo"></img>
                     <h1>Olá, bem vindo!</h1>
@@ -60,7 +74,21 @@ export default function LoginContainer(){
                         <button type='submit'>Login</button>
                     </form>
                 </div>
+
+                <button onClick={logout}>Logout</button>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={true}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </div>
     );
 }
