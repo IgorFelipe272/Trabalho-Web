@@ -10,10 +10,12 @@ require("dotenv").config();
 //Rodar a aplicação com o código abaixo descomentado irá transferir essa mudança local para o banco de dados
 //Mantenha na maioria dos casos comentado
 
-/*(async () => {
+(async () => {
     const database = require("./config/database");
+
     await database.sync({ alter: true });
-})();*/
+    console.log("Sincronização completa!");
+})();
 
 //app.listen para colocar a aplicação na porta definida no .env
 const PORT = process.env.PORT;
