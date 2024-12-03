@@ -28,7 +28,7 @@
 
 .userContainer{
     width: 40%;
-    height: 35%;
+    height: 50%;
     
     background-color: white;
 
@@ -52,7 +52,7 @@
     border-right: 1px solid rgba(187, 187, 187, 0.63);
 
     img{
-        height: 40%;
+        height: 50%;
         width: 65%;
 
         

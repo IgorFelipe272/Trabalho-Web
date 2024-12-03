@@ -88,6 +88,7 @@ export default function LoginContainer(){
                 </div>
 
                 <button onClick={submitLogout}>Logout</button>
+                <button onClick={() => {navigate("/")}}>Voltar</button>
             </div>
             <ToastContainer
                 position="top-right"

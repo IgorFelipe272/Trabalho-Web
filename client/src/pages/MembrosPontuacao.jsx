@@ -14,6 +14,8 @@ import { Line, Bar } from "react-chartjs-2";
 
 import "../styles/MembrosPontuacao.css";
 
+import { useNavigate } from 'react-router-dom'
+
 // Registrar os elementos necessários para gráficos de linhas e barras, a extensao pede q façamos isso 
 ChartJS.register(LineElement, BarElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
 
@@ -21,6 +23,8 @@ export default function MembrosPontuacao() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [chartType, setChartType] = useState("line"); // Estado para alternar entre os tipos de gráfico
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -103,6 +107,7 @@ export default function MembrosPontuacao() {
       <button onClick={toggleChartType}>
         Alternar para {chartType === "line" ? "Gráfico de Barras" : "Gráfico de Linhas"}
       </button>
+      <button onClick={() => {navigate("/user")}}>Voltar</button>
       {chartType === "line" ? (
         <Line key={JSON.stringify(data)} data={data} options={options} />
       ) : (
