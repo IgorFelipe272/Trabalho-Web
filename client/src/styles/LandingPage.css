@@ -19,6 +19,8 @@
         margin-right: 15%;
 
         font-size: 3rem;
+
+        color: white;
     }
 
     h1:hover{
@@ -58,6 +60,8 @@
         font-size: 5rem;
 
         margin-top: -7%;
+        
+        color: white;
     }
 
     h2{ 

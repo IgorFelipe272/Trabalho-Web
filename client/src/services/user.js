@@ -7,9 +7,19 @@ async function login(email, password){
     return response;
 }
 
+async function check(){
+    const response = await api.post("/User/check");
+    return response;
+}
+
 //Conecta o front com a rota de logout la no back
 async function logout(){
     const response = await api.post("User/logout");
+    return response;
+}
+
+async function create(userData){
+    const response = await api.post("User/", userData);
     return response;
 }
 
@@ -23,4 +33,4 @@ async function update(userData){
     return response;
 }
 
-export {login, logout, get, update};
+export {login, check, logout, get, update, create};

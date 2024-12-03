@@ -7,6 +7,8 @@ import { toast, ToastContainer } from "react-toastify";
 import UserInfo from "../components/UserInfo.jsx"
 import PasswordInfo from "../components/PasswordInfo.jsx";
 
+import { useNavigate } from 'react-router-dom'
+
 export default function UserPage() {
     const [activeTab, setActiveTab] = useState("information");
     const [userFade, setUserFade] = useState(false);
@@ -23,6 +25,8 @@ export default function UserPage() {
         id: "",
         password: ""
     });
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -109,6 +113,7 @@ export default function UserPage() {
                     <button onClick={() => handleTabChange("password")}>
                         Senha
                     </button>
+                    <button onClick={() => {navigate("/chart")}}>Gráficos</button>
                 </nav>
                 <div className="informationContainer">
                     <UserInfo 
@@ -127,6 +132,7 @@ export default function UserPage() {
                         setPassword={setPassword}
                         matchPassword={matchPassword}
                     />
+                    <button className="backButton" onClick={() => { navigate("/") }}>Voltar</button>
                 </div>
             </div>
             <ToastContainer

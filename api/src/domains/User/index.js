@@ -12,6 +12,8 @@ const roleAuthenticator = require("../../middlewares/roleAuthenticator");
 const userRoles = require("../../../utils/constants/userRoles");
 
 const jwt = require('jsonwebtoken');
+const PermissionError = require("../../../errors/PermissionError");
+const QueryError = require("../../../errors/QueryError");
 
 //Rota post para logar
 //Utiliza o middleware notLoggedIn para checar se já há um usuário logado na sessão
@@ -33,6 +35,15 @@ Router.post("/login", notLoggedIn, async(req, res, next) => {
         });
         
         res.status(statusCodes.SUCCESS).send({message: "Login realizado com sucesso", userId: userId})
+    }catch(error){
+        next(error);
+    }
+});
+
+//Rota pra checar se há um usuário logado
+Router.post("/check", jwtAuthenticator, async(req, res, next) => {
+    try{
+        res.status(statusCodes.SUCCESS).send("Está logado");
     }catch(error){
         next(error);
     }

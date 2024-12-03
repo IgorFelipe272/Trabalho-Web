@@ -8,6 +8,8 @@ import LandingPage from "./pages/LandingPage";
 import UserPage from "./pages/UserPage";
 import Blob from './components/Blob';
 import Footer from './components/Footer'
+import MembrosPontuacao from "./pages/MembrosPontuacao";
+import Cadastro from "./pages/Cadastro";
 
 //Utiliza apenas a pagina de login no momento
 function App() {
@@ -26,6 +28,8 @@ function App() {
           />
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/user" element={<UserPage/>} />
+          <Route path="/chart" element={<MembrosPontuacao/>}/>
+          <Route path="/signup" element={<Cadastro/>}/>
         </Routes>
       </BrowserRouter>
     </>

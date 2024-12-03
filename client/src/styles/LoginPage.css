@@ -7,14 +7,17 @@
 .loginBody {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     
-    background-color: black;
-
     width: 100vw;
     height: 100vh;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background-image: url('../assets/background-login.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 
     button, input{
         font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -33,11 +36,20 @@
     height: 24vw;
 
     border-radius: 1.5rem;
+
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.loginContainer.fade-up {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .mainWelcomeDiv{
 
-    background-color: rgb(46, 7, 63);
+    background-color: #3c096c;
     border-start-start-radius: 1.5rem;
     border-start-end-radius: 6rem;
     border-end-start-radius: 1.5rem;
@@ -56,7 +68,7 @@
     img{
         width: 70%;
 
-        top: 10%;
+        top: 5%;
         position: absolute;
     }
 
@@ -83,7 +95,7 @@
         border-radius: 0.5rem;
 
         color: white;
-        background-color: rgb(46, 7, 63);
+        background-color: #3c096c;
 
         cursor: pointer;
 
@@ -92,6 +104,36 @@
 
     button:hover {
         animation: expand-glow 0.6s forwards, pulse 2s infinite;
+    }
+
+    .defaultButtons{
+        display: flex;
+        position: relative;
+
+
+        justify-content: space-around;
+        align-items: center;
+        height: 10%;
+        width: 100%;
+
+        padding-right: 1%;
+
+        button{
+            position: absolute;
+
+            top: 40%;
+
+            height: 80%;
+            width: 40%;
+        }
+
+        .logoutButton{
+            left: 5%;
+        }
+
+        .backButton{
+            right: 5%;
+        }
     }
 
 }
@@ -179,7 +221,7 @@
         border: none;
         border-radius: 0.5rem;
 
-        background-color: rgb(46, 7, 63);
+        background-color: #3c096c;
 
         color: white;
 
@@ -224,6 +266,6 @@ display: none;
         box-shadow: 0 0 15px rgba(172, 73, 225, 0.4), 0 0 25px var(--glow-color); 
     }
     100% {
-        box-shadow: 0 0 6px var(--glow-color), 0 0 12px rgba(172, 73, 225, 0.2); 
+        box-shadow: 0 0 6px var(--glow-color), 0 0 12px var(--glow-color); 
     }
 }
