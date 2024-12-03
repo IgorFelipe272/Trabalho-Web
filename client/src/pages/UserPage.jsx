@@ -132,6 +132,7 @@ export default function UserPage() {
                         setPassword={setPassword}
                         matchPassword={matchPassword}
                     />
+                    <button className="backButton" onClick={() => { navigate("/") }}>Voltar</button>
                 </div>
             </div>
             <ToastContainer

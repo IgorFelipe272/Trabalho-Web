@@ -114,10 +114,10 @@ export default function MembrosPontuacao() {
   return (
     <div className="membro">
       <h1>Gráfico de Pontuação</h1>
-      <button onClick={toggleChartType}>
+      <button onClick={toggleChartType} className="pontuacaoButton">
         Alternar para {chartType === "line" ? "Gráfico de Barras" : "Gráfico de Linhas"}
       </button>
-      <button onClick={() => {navigate("/user")}}>Voltar</button>
+      <button onClick={() => {navigate("/user")}} className="pontuacaoButton">Voltar</button>
       {chartType === "line" ? (
         <Line key={JSON.stringify(data)} data={data} options={options} />
       ) : (
