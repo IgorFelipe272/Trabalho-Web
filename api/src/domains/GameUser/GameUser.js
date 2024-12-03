@@ -14,7 +14,8 @@ const GameUser = database.define("GameUser", {
     },
 
     role: {
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM,
+        values: [],
         allowNull: false
     }
 });

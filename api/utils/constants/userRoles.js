@@ -6,4 +6,4 @@ const userRoles = {
     GUEST: "guest"
 };
 
-module.exports = userRoles;
+module.exports = userRoles; 
