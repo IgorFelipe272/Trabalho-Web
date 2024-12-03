@@ -14,6 +14,8 @@ import { Line, Bar } from "react-chartjs-2";
 
 import "../styles/MembrosPontuacao.css";
 
+import {check} from "../services/user";
+
 import { useNavigate } from 'react-router-dom'
 
 // Registrar os elementos necessários para gráficos de linhas e barras, a extensao pede q façamos isso 
@@ -25,6 +27,14 @@ export default function MembrosPontuacao() {
   const [chartType, setChartType] = useState("line"); // Estado para alternar entre os tipos de gráfico
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    async function checkLogin(){
+      await check();
+    }
+
+    checkLogin();
+  }), [];
 
   useEffect(() => {
     async function fetchData() {
