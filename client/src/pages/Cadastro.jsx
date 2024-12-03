@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { create } from "../services/user";
 
 import { ToastContainer, toast} from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 import "../styles/Cadastro.css";
 
@@ -17,6 +18,8 @@ export default function Cadastro() {
 
     const [message, setMessage] = useState("");
     const [missingFields, setMissingFields] = useState([]);
+
+    const navigate = useNavigate();
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -61,6 +64,8 @@ export default function Cadastro() {
 
             // Limpar mensagem de erro e atualizar mensagem de sucesso
             setMessage("Cadastro realizado com sucesso!");
+
+            navigate("/login");
         }catch(error){
             if(error.response)
                 toast.error(error.response.data);
@@ -143,7 +148,7 @@ export default function Cadastro() {
                     <option value="member">Membro</option>
                     <option value="director">Diretor</option>
                     <option value="president">Presidente</option>
-                    <option value="guest">Guest</option>
+                    <option value="guest">Visitante</option>
                 </select>
 
                 <button type="submit">Cadastrar</button>
