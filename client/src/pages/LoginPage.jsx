@@ -45,6 +45,18 @@ export default function LoginContainer(){
         }
     };
 
+    const submitLogout = async () => {
+        try{
+            const response = await logout();
+            console.log(response);
+
+            navigate("/")
+        }catch(error){
+            if(error.response)
+                toast.error(error.response.data);
+        }
+    }
+
     return(
         <div className="loginBody"> 
             <div className={`loginContainer ${fadeUp ? "fade-up" : ""}`}>
@@ -75,7 +87,7 @@ export default function LoginContainer(){
                     </form>
                 </div>
 
-                <button onClick={logout}>Logout</button>
+                <button onClick={submitLogout}>Logout</button>
             </div>
             <ToastContainer
                 position="top-right"

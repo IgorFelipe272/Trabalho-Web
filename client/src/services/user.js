@@ -13,6 +13,11 @@ async function logout(){
     return response;
 }
 
+async function create(userData){
+    const response = await api.post("User/", userData);
+    return response;
+}
+
 async function get(userId){
     const response = await api.get(`User/${userId}`);
     return response; 
@@ -23,4 +28,4 @@ async function update(userData){
     return response;
 }
 
-export {login, logout, get, update};
+export {login, logout, get, update, create};
