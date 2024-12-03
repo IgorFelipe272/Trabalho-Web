@@ -3,26 +3,26 @@ import { login, logout } from "../services/user";
 
 import { useNavigate } from 'react-router-dom'
 
-import { ToastContainer, toast} from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'boxicons'
 
 import "../styles/LoginPage.css"
 import "react-toastify/dist/ReactToastify.css";
 import MAINLOGO from "../assets/logos/MAIN.png"
 
-export default function LoginContainer(){
+export default function LoginContainer() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const[showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const [fadeUp, setFadeUp] = useState(false);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        const timer = setTimeout( () => {
+        const timer = setTimeout(() => {
             setFadeUp(true);
-        },100);
+        }, 100);
         return () => clearTimeout(timer);
     }, []);
 
@@ -37,34 +37,38 @@ export default function LoginContainer(){
 
             sessionStorage.setItem('userId', response.data.userId);
 
-            navigate('/user'); 
+            navigate('/user');
         }
-        catch(error){
-            if(error.response)
+        catch (error) {
+            if (error.response)
                 toast.error(error.response.data);
         }
     };
 
     const submitLogout = async () => {
-        try{
+        try {
             const response = await logout();
             console.log(response);
 
             navigate("/")
-        }catch(error){
-            if(error.response)
+        } catch (error) {
+            if (error.response)
                 toast.error(error.response.data);
         }
     }
 
-    return(
-        <div className="loginBody"> 
+    return (
+        <div className="loginBody">
             <div className={`loginContainer ${fadeUp ? "fade-up" : ""}`}>
                 <div className="mainWelcomeDiv">
                     <img src={MAINLOGO} className="logo"></img>
                     <h1>Olá, bem vindo!</h1>
                     <p>Não tem conta?</p>
-                    <button>Registrar</button>
+                    <button onClick={() => navigate("/signUp")}>Registrar</button>
+                    <div className="defaultButtons">
+                        <button onClick={submitLogout} className="logoutButton">Logout</button>
+                        <button onClick={() => { navigate("/") }} className="backButton">Voltar</button>
+                    </div>
                 </div>
                 <div className="mainLoginDiv">
                     <h1>Login</h1>
@@ -72,7 +76,7 @@ export default function LoginContainer(){
                         <section className="emailSection">
                             <input type="text" id="email" placeholder="Email" value={email} required onChange={(e) => {
                                 setEmail(e.target.value);
-                            }}/>
+                            }} />
                             <box-icon type='solid' name='envelope' size="22px"></box-icon>
                         </section>
 
@@ -80,15 +84,14 @@ export default function LoginContainer(){
                             <input type={showPassword ? "text" : "password"} id="password" placeholder="Senha" value={password} required onChange={(e) => {
                                 setPassword(e.target.value);
                             }} />
-                            <box-icon type='solid' name={showPassword ? "lock-open" : "lock"} onClick={togglePassword} id="lockIcon" size="22px"></box-icon>  
+                            <box-icon type='solid' name={showPassword ? "lock-open" : "lock"} onClick={togglePassword} id="lockIcon" size="22px"></box-icon>
                         </section>
 
                         <button type='submit'>Login</button>
                     </form>
                 </div>
 
-                <button onClick={submitLogout}>Logout</button>
-                <button onClick={() => {navigate("/")}}>Voltar</button>
+
             </div>
             <ToastContainer
                 position="top-right"
