@@ -4,6 +4,8 @@ const GameUser = require("../GameUser/GameUser");
 
 const QueryError = require("../../../errors/QueryError");
 
+const NotFoundError = require("../../../errors/NotFoundError");
+
 class GameServices{
     async create(body){
         const usersData = body.usersData;
@@ -32,6 +34,62 @@ class GameServices{
 
             await newGame.addUser(user, {through: {role: userRole.role}});
         }
+    }
+
+    async delete(gameId){
+        const game = await this.getById(gameId);
+
+        const gameAssociations = await GameUser.findAll({
+            where: {GameId: gameId}
+        });
+
+        for(const association of gameAssociations)
+            await association.destroy();
+
+        await game.destroy();
+    }
+
+    async update(body, gameId){
+        const game = await this.getById(gameId);
+
+        for(let attribute in body){
+            if(body.hasOwnProperty(attribute))
+                game[attribute] = body[attribute];
+        }
+
+        await game.save();
+    }
+
+    async getById(gameId){
+        const game = await Game.findByPk(gameId);
+        if(!game)
+            throw new NotFoundError("Jogo não encontrado");
+
+        return game;
+    }
+
+    async getAll(){
+        const games = await Game.findAll();
+        if(!games)
+            throw new NotFoundError("Nenhum jogo cadastrado");
+
+        return games;
+    }
+
+    async getMembers(gameId){
+        await this.getById(gameId);
+
+        const gameAssociations = await GameUser.findAll({
+            where: {GameId: gameId}
+        });
+
+        const usersIds = gameAssociations.map(g => g.UserId);
+        const gameMembers = await User.findAll({
+            where: {id: usersIds},
+            attributes: ["name", "role"]
+        });
+
+        return gameMembers;
     }
 }
 
